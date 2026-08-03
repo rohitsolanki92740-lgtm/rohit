@@ -1,0 +1,241 @@
+select * from employee where post=Salesman;
+select * from employee where post=Salesman
+                                  *
+ERROR at line 1:
+ORA-00904: "SALESMAN": invalid identifier 
+
+
+SQL> select * from employee where post='Salesman';
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000                                                            
+                                                                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650                                                            
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000                                                            
+                                                                                
+
+SQL> select * from employee where EMP_NAME LIKE 'K%';
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000                                                            
+                                                                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000                                                            
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000                                                            
+                                                                                
+
+SQL> select * from employee where POST='Clerk';
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000                                                            
+                                                                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000                                                            
+                                                                                
+
+SQL> select * from employee where salary BETWEEN 20000 AND 90000;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000                                                            
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000                                                            
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+SQL> select * from employee where dept_id=10;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000                                                            
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000                                                            
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000                                                            
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+6 rows selected.
+
+SQL> select * from employee where salary >25000 AND DEPT_ID=10;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000                                                            
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000                                                            
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+SQL> select emp_name,post,salary from employee;
+
+EMP_NAME             POST           SALARY                                      
+-------------------- ---------- ----------                                      
+bansipadia           Clerk           15000                                      
+Radha Sharma         Salesman        12000                                      
+TanmayDomadiya       President      124000                                      
+Suraj Prakash        Salesman        14650                                      
+Seema Lava           Programmer      35000                                      
+Krupa Vala           Programmer      30000                                      
+Kalpana Joshi        Clerk           17000                                      
+KevalRaval           Salesman        18000                                      
+ParthVasoya          Analyst         90000                                      
+Ramesh Vasoya        Analyst         85000                                      
+
+10 rows selected.
+
+SQL> select sum(salary) from employee;
+
+SUM(SALARY)                                                                     
+-----------                                                                     
+     440650                                                                     
+
+SQL> select * from department where location='anand';
+
+no rows selected
+
+SQL> select * from department where location='Anand';
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        10 IT        Anand                                                      
+        40 Finance   Anand                                                      
+
+SQL> select * from department where dept_no=10 or dept_no=20 or dept_no=40;
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        10 IT        Anand                                                      
+        20 Sales     Bombay                                                     
+        40 Finance   Anand                                                      
+
+SQL> select * from department where dept_no=50;
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        50 Marketing Surat                                                      
+
+SQL> select * from department where dept_name='it' or dept_name='sales' or dept_name='marketing';
+
+no rows selected
+
+SQL> select * from department;
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        10 IT        Anand                                                      
+        20 Sales     Bombay                                                     
+        30 Purchase  Surat                                                      
+        40 Finance   Anand                                                      
+        50 Marketing Surat                                                      
+
+6 rows selected.
+
+SQL> select * from department where dept_name='IT' or dept_name='Sales' or dept_name='Marketing';
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        10 IT        Anand                                                      
+        20 Sales     Bombay                                                     
+        50 Marketing Surat                                                      
+
+SQL> select * from employee where post='Analyst' or Salary>50000;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000                                                            
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+SQL> select * from employee where post='Analyst' and Salary>50000;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+SQL> 

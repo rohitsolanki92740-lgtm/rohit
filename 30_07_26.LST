@@ -1,0 +1,772 @@
+SELECT * FROM employee e INNER JOIN department d ON e.dept_id = d.dept_no;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         10 IT        Anand                                 
+                                                                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         10 IT        Anand                                 
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000         20 Sales     Bombay                                
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         10 IT        Anand                                 
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         10 IT        Anand                                 
+                                                                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650         30 Purchase  Surat                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         10 IT        Anand                                 
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         10 IT        Anand                                 
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         10 IT        Anand                                 
+                                                                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000         40 Finance   Anand                                 
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000         20 Sales     Bombay                                
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         10 IT        Anand                                 
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         10 IT        Anand                                 
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         10 IT        Anand                                 
+                                                                                
+
+16 rows selected.
+
+SQL> select * from employee;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000                                                            
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000                                                            
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650                                                            
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000                                                            
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000                                                            
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000                                                            
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+10 rows selected.
+
+SQL> select * from department;
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        10 IT        Anand                                                      
+        20 Sales     Bombay                                                     
+        30 Purchase  Surat                                                      
+        40 Finance   Anand                                                      
+        50 Marketing Surat                                                      
+
+6 rows selected.
+
+SQL> SELECT e.id,e.emp_name,d.dept_no,d.dept_name FROM employee e INNER JOIN department d ON e.dept_id = d.dept_no;
+
+        ID EMP_NAME                DEPT_NO DEPT_NAME                            
+---------- -------------------- ---------- ---------                            
+     12345 bansipadia                   10 IT                                   
+     12345 bansipadia                   10 IT                                   
+     13254 Radha Sharma                 20 Sales                                
+     12675 TanmayDomadiya               10 IT                                   
+     12675 TanmayDomadiya               10 IT                                   
+     13457 Suraj Prakash                30 Purchase                             
+     14567 Seema Lava                   10 IT                                   
+     14567 Seema Lava                   10 IT                                   
+     16754 Krupa Vala                   10 IT                                   
+     16754 Krupa Vala                   10 IT                                   
+     14562 Kalpana Joshi                40 Finance                              
+
+        ID EMP_NAME                DEPT_NO DEPT_NAME                            
+---------- -------------------- ---------- ---------                            
+     12435 KevalRaval                   20 Sales                                
+     13654 ParthVasoya                  10 IT                                   
+     13654 ParthVasoya                  10 IT                                   
+     18654 Ramesh Vasoya                10 IT                                   
+     18654 Ramesh Vasoya                10 IT                                   
+
+16 rows selected.
+
+SQL> select e.emp_name,d.dept_no,d.dept_name from employee e left outer join department d on e.dept_id=d.dept_no;
+
+EMP_NAME                DEPT_NO DEPT_NAME                                       
+-------------------- ---------- ---------                                       
+Ramesh Vasoya                10 IT                                              
+ParthVasoya                  10 IT                                              
+Krupa Vala                   10 IT                                              
+Seema Lava                   10 IT                                              
+TanmayDomadiya               10 IT                                              
+bansipadia                   10 IT                                              
+Ramesh Vasoya                10 IT                                              
+ParthVasoya                  10 IT                                              
+Krupa Vala                   10 IT                                              
+Seema Lava                   10 IT                                              
+TanmayDomadiya               10 IT                                              
+
+EMP_NAME                DEPT_NO DEPT_NAME                                       
+-------------------- ---------- ---------                                       
+bansipadia                   10 IT                                              
+KevalRaval                   20 Sales                                           
+Radha Sharma                 20 Sales                                           
+Suraj Prakash                30 Purchase                                        
+Kalpana Joshi                40 Finance                                         
+
+16 rows selected.
+
+SQL> select e.emp_name,d.dept_no,d.dept_name from employee e right outer join department d on e.dept_id=d.dept_no;
+
+EMP_NAME                DEPT_NO DEPT_NAME                                       
+-------------------- ---------- ---------                                       
+bansipadia                   10 IT                                              
+bansipadia                   10 IT                                              
+Radha Sharma                 20 Sales                                           
+TanmayDomadiya               10 IT                                              
+TanmayDomadiya               10 IT                                              
+Suraj Prakash                30 Purchase                                        
+Seema Lava                   10 IT                                              
+Seema Lava                   10 IT                                              
+Krupa Vala                   10 IT                                              
+Krupa Vala                   10 IT                                              
+Kalpana Joshi                40 Finance                                         
+
+EMP_NAME                DEPT_NO DEPT_NAME                                       
+-------------------- ---------- ---------                                       
+KevalRaval                   20 Sales                                           
+ParthVasoya                  10 IT                                              
+ParthVasoya                  10 IT                                              
+Ramesh Vasoya                10 IT                                              
+Ramesh Vasoya                10 IT                                              
+                             50 Marketing                                       
+
+17 rows selected.
+
+SQL> select e.emp_name,d.dept_no,d.dept_name from employee e full outer join department d on e.dept_id=d.dept_no;
+
+EMP_NAME                DEPT_NO DEPT_NAME                                       
+-------------------- ---------- ---------                                       
+Ramesh Vasoya                10 IT                                              
+ParthVasoya                  10 IT                                              
+Krupa Vala                   10 IT                                              
+Seema Lava                   10 IT                                              
+TanmayDomadiya               10 IT                                              
+bansipadia                   10 IT                                              
+Ramesh Vasoya                10 IT                                              
+ParthVasoya                  10 IT                                              
+Krupa Vala                   10 IT                                              
+Seema Lava                   10 IT                                              
+TanmayDomadiya               10 IT                                              
+
+EMP_NAME                DEPT_NO DEPT_NAME                                       
+-------------------- ---------- ---------                                       
+bansipadia                   10 IT                                              
+KevalRaval                   20 Sales                                           
+Radha Sharma                 20 Sales                                           
+Suraj Prakash                30 Purchase                                        
+Kalpana Joshi                40 Finance                                         
+                             50 Marketing                                       
+
+17 rows selected.
+
+SQL> SELECT e.emp_name AS Employee,m.emp_name AS Manager FROM employee e LEFT JOIN employee m ON e.mgr_id=m.id;
+
+EMPLOYEE             MANAGER                                                    
+-------------------- --------------------                                       
+KevalRaval           bansipadia                                                 
+Suraj Prakash        bansipadia                                                 
+Radha Sharma         bansipadia                                                 
+Ramesh Vasoya        TanmayDomadiya                                             
+ParthVasoya          TanmayDomadiya                                             
+Krupa Vala           ParthVasoya                                                
+Seema Lava           ParthVasoya                                                
+Kalpana Joshi                                                                   
+TanmayDomadiya                                                                  
+bansipadia                                                                      
+
+10 rows selected.
+
+SQL> SELECT e.emp_name AS Employee,m.emp_name AS Manager FROM employee e LEFT JOIN employee m ON e.mgr_id=m.id order by e.dept_id;
+
+EMPLOYEE             MANAGER                                                    
+-------------------- --------------------                                       
+ParthVasoya          TanmayDomadiya                                             
+TanmayDomadiya                                                                  
+Seema Lava           ParthVasoya                                                
+Krupa Vala           ParthVasoya                                                
+Ramesh Vasoya        TanmayDomadiya                                             
+bansipadia                                                                      
+Radha Sharma         bansipadia                                                 
+KevalRaval           bansipadia                                                 
+Suraj Prakash        bansipadia                                                 
+Kalpana Joshi                                                                   
+
+10 rows selected.
+
+SQL> select e.emp_name,d.dept_name from employee e cross join department d;
+
+EMP_NAME             DEPT_NAME                                                  
+-------------------- ---------                                                  
+bansipadia           IT                                                         
+Radha Sharma         IT                                                         
+TanmayDomadiya       IT                                                         
+Suraj Prakash        IT                                                         
+Seema Lava           IT                                                         
+Krupa Vala           IT                                                         
+Kalpana Joshi        IT                                                         
+KevalRaval           IT                                                         
+ParthVasoya          IT                                                         
+Ramesh Vasoya        IT                                                         
+bansipadia           IT                                                         
+
+EMP_NAME             DEPT_NAME                                                  
+-------------------- ---------                                                  
+Radha Sharma         IT                                                         
+TanmayDomadiya       IT                                                         
+Suraj Prakash        IT                                                         
+Seema Lava           IT                                                         
+Krupa Vala           IT                                                         
+Kalpana Joshi        IT                                                         
+KevalRaval           IT                                                         
+ParthVasoya          IT                                                         
+Ramesh Vasoya        IT                                                         
+bansipadia           Sales                                                      
+Radha Sharma         Sales                                                      
+
+EMP_NAME             DEPT_NAME                                                  
+-------------------- ---------                                                  
+TanmayDomadiya       Sales                                                      
+Suraj Prakash        Sales                                                      
+Seema Lava           Sales                                                      
+Krupa Vala           Sales                                                      
+Kalpana Joshi        Sales                                                      
+KevalRaval           Sales                                                      
+ParthVasoya          Sales                                                      
+Ramesh Vasoya        Sales                                                      
+bansipadia           Purchase                                                   
+Radha Sharma         Purchase                                                   
+TanmayDomadiya       Purchase                                                   
+
+EMP_NAME             DEPT_NAME                                                  
+-------------------- ---------                                                  
+Suraj Prakash        Purchase                                                   
+Seema Lava           Purchase                                                   
+Krupa Vala           Purchase                                                   
+Kalpana Joshi        Purchase                                                   
+KevalRaval           Purchase                                                   
+ParthVasoya          Purchase                                                   
+Ramesh Vasoya        Purchase                                                   
+bansipadia           Finance                                                    
+Radha Sharma         Finance                                                    
+TanmayDomadiya       Finance                                                    
+Suraj Prakash        Finance                                                    
+
+EMP_NAME             DEPT_NAME                                                  
+-------------------- ---------                                                  
+Seema Lava           Finance                                                    
+Krupa Vala           Finance                                                    
+Kalpana Joshi        Finance                                                    
+KevalRaval           Finance                                                    
+ParthVasoya          Finance                                                    
+Ramesh Vasoya        Finance                                                    
+bansipadia           Marketing                                                  
+Radha Sharma         Marketing                                                  
+TanmayDomadiya       Marketing                                                  
+Suraj Prakash        Marketing                                                  
+Seema Lava           Marketing                                                  
+
+EMP_NAME             DEPT_NAME                                                  
+-------------------- ---------                                                  
+Krupa Vala           Marketing                                                  
+Kalpana Joshi        Marketing                                                  
+KevalRaval           Marketing                                                  
+ParthVasoya          Marketing                                                  
+Ramesh Vasoya        Marketing                                                  
+
+60 rows selected.
+
+SQL> select * from employee natural join department;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         10 IT        Anand                                 
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000         10 IT        Anand                                 
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650         10 IT        Anand                                 
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         10 IT        Anand                                 
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000         10 IT        Anand                                 
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000         10 IT        Anand                                 
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         10 IT        Anand                                 
+                                                                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         10 IT        Anand                                 
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         10 IT        Anand                                 
+                                                                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650         10 IT        Anand                                 
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         10 IT        Anand                                 
+                                                                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000         10 IT        Anand                                 
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000         10 IT        Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         10 IT        Anand                                 
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         10 IT        Anand                                 
+                                                                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         20 Sales     Bombay                                
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000         20 Sales     Bombay                                
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         20 Sales     Bombay                                
+                                                                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650         20 Sales     Bombay                                
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         20 Sales     Bombay                                
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         20 Sales     Bombay                                
+                                                                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000         20 Sales     Bombay                                
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000         20 Sales     Bombay                                
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         20 Sales     Bombay                                
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         20 Sales     Bombay                                
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         30 Purchase  Surat                                 
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000         30 Purchase  Surat                                 
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         30 Purchase  Surat                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650         30 Purchase  Surat                                 
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         30 Purchase  Surat                                 
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         30 Purchase  Surat                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000         30 Purchase  Surat                                 
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000         30 Purchase  Surat                                 
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         30 Purchase  Surat                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         30 Purchase  Surat                                 
+                                                                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         40 Finance   Anand                                 
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000         40 Finance   Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         40 Finance   Anand                                 
+                                                                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650         40 Finance   Anand                                 
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         40 Finance   Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         40 Finance   Anand                                 
+                                                                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000         40 Finance   Anand                                 
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000         40 Finance   Anand                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         40 Finance   Anand                                 
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         40 Finance   Anand                                 
+                                                                                
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000         50 Marketing Surat                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000         50 Marketing Surat                                 
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000         50 Marketing Surat                                 
+                                                                                
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650         50 Marketing Surat                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000         50 Marketing Surat                                 
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000         50 Marketing Surat                                 
+                                                                                
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000         50 Marketing Surat                                 
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY    DEPT_NO DEPT_NAME LOCATI                                
+--------- ---------- ---------- --------- ------                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000         50 Marketing Surat                                 
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000         50 Marketing Surat                                 
+                                                                                
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000         50 Marketing Surat                                 
+                                                                                
+
+60 rows selected.
+
+SQL> update employee set salary = salary + 500;
+
+10 rows updated.
+
+SQL> select * from employee;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15500                                                            
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12500                                                            
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124500                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      15150                                                            
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35500                                                            
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30500                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17500                                                            
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18500                                                            
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90500                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85500                                                            
+                                                                                
+
+10 rows selected.
+
+SQL> update employee set salary = salary - 500;
+
+10 rows updated.
+
+SQL> select * from employee;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000                                                            
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000                                                            
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650                                                            
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000                                                            
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000                                                            
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000                                                            
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+10 rows selected.
+
+SQL> 

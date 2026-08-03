@@ -1,0 +1,129 @@
+select sum(salary) from employee;
+
+SUM(SALARY)                                                                     
+-----------                                                                     
+     440650                                                                     
+
+SQL> select * from employee;
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     12345 bansipadia           Clerk                                    10     
+18-NOV-90      15000                                                            
+                                                                                
+     13254 Radha Sharma         Salesman        12345       4000         20     
+25-NOV-90      12000                                                            
+                                                                                
+     12675 TanmayDomadiya       President                                10     
+05-JUL-85     124000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     13457 Suraj Prakash        Salesman        12345       1700         30     
+12-AUG-92      14650                                                            
+                                                                                
+     14567 Seema Lava           Programmer      13654                    10     
+17-JUL-94      35000                                                            
+                                                                                
+     16754 Krupa Vala           Programmer      13654                    10     
+13-AUG-92      30000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     14562 Kalpana Joshi        Clerk                                    40     
+17-SEP-90      17000                                                            
+                                                                                
+     12435 KevalRaval           Salesman        12345       6500         20     
+20-OCT-90      18000                                                            
+                                                                                
+     13654 ParthVasoya          Analyst         12675                    10     
+27-DEC-95      90000                                                            
+                                                                                
+
+        ID EMP_NAME             POST           MGR_ID  COMMISION    DEPT_ID     
+---------- -------------------- ---------- ---------- ---------- ----------     
+HIRE_DATE     SALARY                                                            
+--------- ----------                                                            
+     18654 Ramesh Vasoya        Analyst         12675                    10     
+15-MAY-93      85000                                                            
+                                                                                
+
+10 rows selected.
+
+SQL> select * from department;
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        20 Sales     Bombay                                                     
+        30 Purchase  Surat                                                      
+        40 Finance   Anand                                                      
+        50 Marketing Surat                                                      
+
+SQL> select * from department where location='Anand';
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        40 Finance   Anand                                                      
+
+SQL> select * from department where dept_no=10,20,40;
+select * from department where dept_no=10,20,40
+                                         *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from department where dept_no=10 or dept_no=20 or dept_no=40;
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        20 Sales     Bombay                                                     
+        40 Finance   Anand                                                      
+
+SQL> select * from department where dept_no=50;
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        50 Marketing Surat                                                      
+
+SQL> SELECT department_name FROM departments WHERE department_name IN ('IT', 'Sales', 'Marketing');
+SELECT department_name FROM departments WHERE department_name IN ('IT', 'Sales', 'Marketing')
+                            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT dept_name FROM departments WHERE dept_name IN ('IT', 'Sales', 'Marketing');
+SELECT dept_name FROM departments WHERE dept_name IN ('IT', 'Sales', 'Marketing')
+                      *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT dept_name FROM department WHERE dept_name IN ('IT', 'Sales', 'Marketing');
+
+DEPT_NAME                                                                       
+---------                                                                       
+IT                                                                              
+Sales                                                                           
+Marketing                                                                       
+
+SQL> SELECT * FROM department WHERE dept_no IN (10,20,40);
+
+   DEPT_NO DEPT_NAME LOCATI                                                     
+---------- --------- ------                                                     
+        10 IT        Anand                                                      
+        20 Sales     Bombay                                                     
+        40 Finance   Anand                                                      
+
+SQL> 

@@ -1,0 +1,36 @@
+#include<conio.h>
+#include<iostream.h>
+void main()
+{
+	int i,j;
+	clrscr();
+	for(i=5;i>=1;i--)
+	{
+		for(j=1;j<=i;j++)
+		{
+			cout<<j;
+			if(j==1)
+			{
+			cout<<'A';
+			}
+				if(j==2)
+			{
+			cout<<'B';
+			}
+				if(j==3)
+			{
+			cout<<'C';
+			}
+				if(j==4)
+			{
+			cout<<'D';
+			}
+				if(j==5)
+			{
+			cout<<'E';
+			}
+		}
+		cout<<"\n";
+	}
+	getch();
+}
