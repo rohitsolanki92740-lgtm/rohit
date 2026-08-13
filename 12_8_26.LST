@@ -1,0 +1,283 @@
+select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EMPLOYEE2                      TABLE                                            
+DEPARTMENT2                    TABLE                                            
+BIN$l+BPF6lOTZy1MeI9AgHgng==$0 TABLE                                            
+BIN$Ade4vqNWSxamJhqdnMLt3Q==$0 TABLE                                            
+BIN$SaAHrkaIRmW8Fm2o+5mP0A==$0 TABLE                                            
+D1                             TABLE                                            
+BIN$rF3ZdiewRra9rQonQqCYiQ==$0 TABLE                                            
+STUD                           TABLE                                            
+S1                             TABLE                                            
+S2                             TABLE                                            
+SHOP                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EEMP                           TABLE                                            
+ITEM_MASTER                    TABLE                                            
+CLIENT                         TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+STUDENT                        TABLE                                            
+BIN$RQRxB5YlRWq/RA6kKyapmg==$0 TABLE                                            
+BIN$/0RXROsCQ0GN8iv7GXU84A==$0 TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPARTMENT                     TABLE                                            
+JAY                            TABLE                                            
+DARSHIL                        TABLE                                            
+JAY1                           TABLE                                            
+STUDENTT                       TABLE                                            
+EMP2                           TABLE                                            
+ORDER_DETAIL                   TABLE                                            
+ITEM_MASTER2                   TABLE                                            
+CLIENT2                        TABLE                                            
+STUDENT2                       TABLE                                            
+COURSE_MASTER                  TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT_MASTER                 TABLE                                            
+FEE_MASTER                     TABLE                                            
+DEPT_MAST                      TABLE                                            
+EMP_MAST                       TABLE                                            
+SALARY_MAST                    TABLE                                            
+
+38 rows selected.
+
+SQL> drop table course_master;
+drop table course_master
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys 
+
+
+SQL> truncate table course_master;
+truncate table course_master
+               *
+ERROR at line 1:
+ORA-02266: unique/primary keys in table referenced by enabled foreign keys 
+
+
+SQL> delete from course_master;
+delete from course_master
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SCOTT.SYS_C005237) violated - child record 
+found 
+
+
+SQL> CREATE TABLE Cours_master (C_code number(4) PRIMARY KEY,c_name VARCHAR(50));
+
+Table created.
+
+SQL> CREATE TABLE Studen_Master (Sno number(2) PRIMARY KEY,sname VARCHAR(15),c_code number(4),city VARCHAR(15),age number(3));
+
+Table created.
+
+SQL> CREATE TABLE Fee_Maste (Sno number(2),fee number(6),FOREIGN KEY (Sno) REFERENCES Student_Master(Sno));
+
+Table created.
+
+SQL> INSERT INTO Cours_master VALUES (101, 'BCA');
+
+1 row created.
+
+SQL> INSERT INTO Cours_master VALUES (102, 'BBA');
+
+1 row created.
+
+SQL> INSERT INTO Cours_master VALUES (103, 'MCA');
+
+1 row created.
+
+SQL> INSERT INTO Studen_Master VALUES (1, 'Rahul', 101, 'Rajkot', 25);
+
+1 row created.
+
+SQL> INSERT INTO Studen_Master VALUES (2, 'Amit', 102, 'Jamnagar', 22);
+
+1 row created.
+
+SQL> INSERT INTO Studen_Master VALUES (3, 'Neha', 101, 'Surat', 26);
+
+1 row created.
+
+SQL> INSERT INTO Studen_Master VALUES (4, 'Priya', 103, 'Rajkot', 28);
+
+1 row created.
+
+SQL> INSERT INTO Studen_Master VALUES (5, 'Karan', 101, 'Jamnagar', 24);
+
+1 row created.
+
+SQL> INSERT INTO Fee_Maste VALUES (1, 50000);
+
+1 row created.
+
+SQL> INSERT INTO Fee_Maste VALUES (2, 45000);
+
+1 row created.
+
+SQL> INSERT INTO Fee_Maste VALUES (4, 60000);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> SELECT s.* FROM Studen_Master s LEFT JOIN Fee_Master f ON s.Sno = f.Sno WHERE f.Sno IS NULL;
+
+       SNO SNAME               C_CODE CITY                   AGE                
+---------- --------------- ---------- --------------- ----------                
+         3 Neha                   101 Surat                   26                
+
+SQL> SELECT * FROM Studen_Master WHERE city IN ('Jamnagar', 'Rajkot', 'Surat');
+
+       SNO SNAME               C_CODE CITY                   AGE                
+---------- --------------- ---------- --------------- ----------                
+         1 Rahul                  101 Rajkot                  25                
+         2 Amit                   102 Jamnagar                22                
+         3 Neha                   101 Surat                   26                
+         4 Priya                  103 Rajkot                  28                
+         5 Karan                  101 Jamnagar                24                
+
+SQL> SELECT c.c_name AS Course_Name, s.sname AS Student_Name FROM Studen_Master s JOIN Cours_master c ON s.c_code = c.C_code ORDER BY c.c_name;
+
+COURSE_NAME                                        STUDENT_NAME                 
+-------------------------------------------------- ---------------              
+BBA                                                Amit                         
+BCA                                                Karan                        
+BCA                                                Rahul                        
+BCA                                                Neha                         
+MCA                                                Priya                        
+
+SQL> SELECT s.sname AS Student_Name,c.c_name AS Course_Name,s.age AS Age FROM Studen_Master s JOIN Cours_master c ON s.c_code = c.C_code WHERE s.age > 23 AND s.age < 27 AND c.c_name = 'BCA';
+
+STUDENT_NAME    COURSE_NAME                                               AGE   
+--------------- -------------------------------------------------- ----------   
+Rahul           BCA                                                        25   
+Neha            BCA                                                        26   
+Karan           BCA                                                        24   
+
+SQL> CREATE TABLE Dept_mas (Dept_no INT PRIMARY KEY,dept_name VARCHAR(50));
+
+Table created.
+
+SQL> CREATE TABLE Emp_mas (Emp_no INT PRIMARY KEY,emp_name VARCHAR(50),dept_code INT,desi VARCHAR(50),FOREIGN KEY (dept_code) REFERENCES Dept_mast(Dept_no));
+
+Table created.
+
+SQL> CREATE TABLE Salary_mast (Emp_no INT,sal DECIMAL(10,2),hra DECIMAL(10,2),ma DECIMAL(10,2),pf DECIMAL(10,2),FOREIGN KEY (Emp_no) REFERENCES Emp_mast(Emp_no));
+CREATE TABLE Salary_mast (Emp_no INT,sal DECIMAL(10,2),hra DECIMAL(10,2),ma DECIMAL(10,2),pf DECIMAL(10,2),FOREIGN KEY (Emp_no) REFERENCES Emp_mast(Emp_no))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE Salary_mas (Emp_no INT,sal DECIMAL(10,2),hra DECIMAL(10,2),ma DECIMAL(10,2),pf DECIMAL(10,2),FOREIGN KEY (Emp_no) REFERENCES Emp_mast(Emp_no));
+
+Table created.
+
+SQL> INSERT INTO Dept_mas VALUES (1, 'Computer');
+
+1 row created.
+
+SQL> INSERT INTO Dept_mas VALUES (2, 'Account');
+
+1 row created.
+
+SQL> INSERT INTO Dept_mas VALUES (3, 'HR');
+
+1 row created.
+
+SQL> INSERT INTO Dept_mas VALUES (4, 'Sales');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Emp_mas VALUES (101, 'Rahul', 1, 'Manager');
+
+1 row created.
+
+SQL> INSERT INTO Emp_mas VALUES (102, 'Amit', 2, 'Clerk');
+
+1 row created.
+
+SQL> INSERT INTO Emp_mas VALUES (103, 'Neha', 1, 'Developer');
+
+1 row created.
+
+SQL> INSERT INTO Emp_mas VALUES (104, 'Priya', 3, 'HR Manager');
+
+1 row created.
+
+SQL> INSERT INTO Emp_mas VALUES (105, 'Karan', 4, 'Sales Executive');
+
+1 row created.
+
+SQL> INSERT INTO Salary_mas VALUES (101, 4500, 100, 300, 200);
+
+1 row created.
+
+SQL> INSERT INTO Salary_mas VALUES (102, 2500, 100, 200, 150);
+
+1 row created.
+
+SQL> INSERT INTO Salary_mas VALUES (103, 5500, 100, 400, 250);
+
+1 row created.
+
+SQL> INSERT INTO Salary_mas VALUES (104, 1800, 200, 100, 100);
+
+1 row created.
+
+SQL> INSERT INTO Salary_mas VALUES (105, 3500, 100, 250, 200);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> SELECT e.emp_name,d.dept_name,s.sal + s.hra + s.ma - s.pf AS esal FROM Emp_mas e JOIN Dept_mas d ON e.dept_code = d.Dept_no JOIN Salary_mast s ON e.Emp_no = s.Emp_no WHERE s.sal > 2000 AND s.sal < 5000;
+
+EMP_NAME                                                                        
+--------------------------------------------------                              
+DEPT_NAME                                                ESAL                   
+-------------------------------------------------- ----------                   
+Rahul                                                                           
+Computer                                                 4900                   
+                                                                                
+Amit                                                                            
+Account                                                  2750                   
+                                                                                
+Priya                                                                           
+HR                                                       3800                   
+                                                                                
+
+EMP_NAME                                                                        
+--------------------------------------------------                              
+DEPT_NAME                                                ESAL                   
+-------------------------------------------------- ----------                   
+Karan                                                                           
+Sales                                                    5150                   
+                                                                                
+
+SQL> UPDATE Salary_mast SET hra = CASE WHEN sal > 2000 THEN 100 ELSE 200 END;
+
+5 rows updated.
+
+SQL> DELETE FROM Emp_mas WHERE dept_code IN (SELECT Dept_no FROM Dept_mas WHERE dept_name = 'Computer');
+
+2 rows deleted.
+
+SQL> 

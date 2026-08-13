@@ -1,0 +1,753 @@
+CREATE TABLE Salesman (salesman_id NUMBER PRIMARY KEY,name VARCHAR2(50),city VARCHAR2(50),commission  NUMBER(5,2));
+
+Table created.
+
+SQL> CREATE TABLE Customer (cust_id NUMBER PRIMARY KEY,cname VARCHAR2(50),city VARCHAR2(50),grade NUMBER,salesman_id NUMBER,CONSTRAINT fk_customer_salesman FOREIGN KEY (salesman_id)REFERENCES Salesman(salesman_id));
+
+Table created.
+
+SQL> CREATE TABLE "Order" (ord_id NUMBER PRIMARY KEY,purchase_amt NUMBER(10,2),order_date DATE,cust_id NUMBER,salesman_id NUMBER,CONSTRAINT fk_order_customer FOREIGN KEY (cust_id)REFERENCES Customer(cust_id),CONSTRAINT fk_order_salesman FOREIGN KEY (salesman_id)REFERENCES Salesman(salesman_id));
+
+Table created.
+
+SQL> CREATE TABLE Emp_department (dept_no  NUMBER PRIMARY KEY,deptname VARCHAR2(50));
+
+Table created.
+
+SQL> CREATE TABLE Emp_details (Emp_id    NUMBER PRIMARY KEY,emp_fname VARCHAR2(50),emp_lname VARCHAR2(50),salary    NUMBER(10,2),dept_no   NUMBER,CONSTRAINT fk_emp_department FOREIGN KEY (dept_no)REFERENCES Emp_department(dept_no));
+
+Table created.
+
+SQL> INSERT INTO Salesman VALUES (1001, 'James', 'New York', 15.00);
+
+1 row created.
+
+SQL> INSERT INTO Salesman VALUES (1002, 'Robert', 'London', 13.00);
+
+1 row created.
+
+SQL> INSERT INTO Salesman VALUES (1003, 'William', 'New York', 12.00);
+
+1 row created.
+
+SQL> INSERT INTO Salesman VALUES (1004, 'David', 'Paris', 14.00);
+
+1 row created.
+
+SQL> INSERT INTO Salesman VALUES (1005, 'John', 'London', 10.00);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2001, 'Alice', 'New York', 250, 1001);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2002, 'Bob', 'London', 150, 1002);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2003, 'Charlie', 'Paris', 200, 1004);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2004, 'Diana', 'Mumbai', 300, 1002);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2005, 'Eva', 'New York', 100, 1003);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2006, 'Frank', 'Delhi', 250, 1004);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2007, 'Grace', 'London', 200, 1005);
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2008, 'Harry', 'Paris', 150, 1002);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3001, 1200, DATE '2026-01-10', 2001, 1001);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3002, 2500, DATE '2026-01-15', 2002, 1002);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3003, 750,  DATE '2026-02-05', 2003, 1004);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3004, 1800, DATE '2026-02-12', 2004, 1002);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3005, 450,  DATE '2026-02-20', 2005, 1003);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3006, 2000, DATE '2026-03-01', 2006, 1004);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3007, 650,  DATE '2026-03-10', 2007, 1005);
+
+1 row created.
+
+SQL> INSERT INTO "Order" VALUES (3008, 1500, DATE '2026-03-15', 2008, 1002);
+
+1 row created.
+
+SQL> INSERT INTO Emp_department VALUES (10, 'Sales');
+
+1 row created.
+
+SQL> INSERT INTO Emp_department VALUES (20, 'Finance');
+
+1 row created.
+
+SQL> INSERT INTO Emp_department VALUES (30, 'IT');
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (101, 'John', 'Smith', 45000, 10);
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (102, 'Alice', 'Brown', 50000, 10);
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (103, 'Robert', 'Wilson', 42000, 10);
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (104, 'David', 'Taylor', 55000, 20);
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (105, 'Mary', 'Thomas', 48000, 20);
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (106, 'James', 'Moore', 60000, 30);
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (107, 'Linda', 'Martin', 52000, 30);
+
+1 row created.
+
+SQL> INSERT INTO Emp_details VALUES (108, 'Kevin', 'Lee', 40000, 30);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT c.cname AS customer_name,s.name AS salesman_name,c.city FROM Customer c JOIN Salesman s ON c.city = s.city;
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+Alice                                                                           
+William                                                                         
+New York                                                                        
+                                                                                
+Alice                                                                           
+James                                                                           
+New York                                                                        
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+                                                                                
+Bob                                                                             
+John                                                                            
+London                                                                          
+                                                                                
+Bob                                                                             
+Robert                                                                          
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+London                                                                          
+                                                                                
+Charlie                                                                         
+David                                                                           
+Paris                                                                           
+                                                                                
+Eva                                                                             
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+William                                                                         
+New York                                                                        
+                                                                                
+Eva                                                                             
+James                                                                           
+New York                                                                        
+                                                                                
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+Grace                                                                           
+John                                                                            
+London                                                                          
+                                                                                
+Grace                                                                           
+Robert                                                                          
+London                                                                          
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+                                                                                
+Harry                                                                           
+David                                                                           
+Paris                                                                           
+                                                                                
+
+10 rows selected.
+
+SQL> SELECT c.cname AS customer_name,s.name AS salesman_name FROM Customer c JOIN Salesman s ON c.salesman_id = s.salesman_id;
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+Alice                                                                           
+James                                                                           
+                                                                                
+Bob                                                                             
+Robert                                                                          
+                                                                                
+Charlie                                                                         
+David                                                                           
+                                                                                
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+Diana                                                                           
+Robert                                                                          
+                                                                                
+Eva                                                                             
+William                                                                         
+                                                                                
+Frank                                                                           
+David                                                                           
+                                                                                
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+Grace                                                                           
+John                                                                            
+                                                                                
+Harry                                                                           
+Robert                                                                          
+                                                                                
+
+8 rows selected.
+
+SQL> SELECT o.ord_id,o.purchase_amt,c.cname AS customer_name,c.city AS customer_city,s.name AS salesman_name,s.city AS salesman_city FROM "Order" o JOIN Customer c ON o.cust_id = c.cust_id JOIN Salesman s ON o.salesman_id = s.salesman_id WHERE c.city <> s.city;
+
+    ORD_ID PURCHASE_AMT CUSTOMER_NAME                                           
+---------- ------------ --------------------------------------------------      
+CUSTOMER_CITY                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_CITY                                                                   
+--------------------------------------------------                              
+      3004         1800 Diana                                                   
+Mumbai                                                                          
+Robert                                                                          
+London                                                                          
+                                                                                
+
+    ORD_ID PURCHASE_AMT CUSTOMER_NAME                                           
+---------- ------------ --------------------------------------------------      
+CUSTOMER_CITY                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_CITY                                                                   
+--------------------------------------------------                              
+      3006         2000 Frank                                                   
+Delhi                                                                           
+David                                                                           
+Paris                                                                           
+                                                                                
+
+    ORD_ID PURCHASE_AMT CUSTOMER_NAME                                           
+---------- ------------ --------------------------------------------------      
+CUSTOMER_CITY                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_CITY                                                                   
+--------------------------------------------------                              
+      3008         1500 Harry                                                   
+Paris                                                                           
+Robert                                                                          
+London                                                                          
+                                                                                
+
+SQL> SELECT o.ord_id,c.cname AS customer_name FROM "Order" o JOIN Customer c ON o.cust_id = c.cust_id;
+
+    ORD_ID CUSTOMER_NAME                                                        
+---------- --------------------------------------------------                   
+      3001 Alice                                                                
+      3002 Bob                                                                  
+      3003 Charlie                                                              
+      3004 Diana                                                                
+      3005 Eva                                                                  
+      3006 Frank                                                                
+      3007 Grace                                                                
+      3008 Harry                                                                
+
+8 rows selected.
+
+SQL> SELECT c.cname AS customer_name,c.city AS customer_city,s.name AS salesman_name,s.commission FROM Customer c JOIN Salesman s ON c.salesman_id = s.salesman_id WHERE s.commission BETWEEN 12 AND 14;
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+CUSTOMER_CITY                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                      COMMISSION                   
+-------------------------------------------------- ----------                   
+Bob                                                                             
+London                                                                          
+Robert                                                     13                   
+                                                                                
+Charlie                                                                         
+Paris                                                                           
+David                                                      14                   
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+CUSTOMER_CITY                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                      COMMISSION                   
+-------------------------------------------------- ----------                   
+                                                                                
+Diana                                                                           
+Mumbai                                                                          
+Robert                                                     13                   
+                                                                                
+Eva                                                                             
+New York                                                                        
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+CUSTOMER_CITY                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                      COMMISSION                   
+-------------------------------------------------- ----------                   
+William                                                    12                   
+                                                                                
+Frank                                                                           
+Delhi                                                                           
+David                                                      14                   
+                                                                                
+Harry                                                                           
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+CUSTOMER_CITY                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                      COMMISSION                   
+-------------------------------------------------- ----------                   
+Paris                                                                           
+Robert                                                     13                   
+                                                                                
+
+6 rows selected.
+
+SQL> SELECT o.ord_id,c.cname AS customer_name,s.commission AS commission_rate,o.purchase_amt * s.commission / 100 AS earned_commission FROM "Order" o JOIN Customer c ON o.cust_id = c.cust_id JOIN Salesman s ON o.salesman_id = s.salesman_id WHERE c.grade >= 200;
+
+    ORD_ID CUSTOMER_NAME                                      COMMISSION_RATE   
+---------- -------------------------------------------------- ---------------   
+EARNED_COMMISSION                                                               
+-----------------                                                               
+      3001 Alice                                                           15   
+              180                                                               
+                                                                                
+      3004 Diana                                                           13   
+              234                                                               
+                                                                                
+      3006 Frank                                                           14   
+              280                                                               
+                                                                                
+
+    ORD_ID CUSTOMER_NAME                                      COMMISSION_RATE   
+---------- -------------------------------------------------- ---------------   
+EARNED_COMMISSION                                                               
+-----------------                                                               
+      3003 Charlie                                                         14   
+              105                                                               
+                                                                                
+      3007 Grace                                                           10   
+               65                                                               
+                                                                                
+
+SQL> SELECT o.ord_id,o.purchase_amt,c.cname AS customer_name,c.city FROM "Order" o JOIN Customer c ON o.cust_id = c.cust_id WHERE o.purchase_amt BETWEEN 500 AND 2000;
+
+    ORD_ID PURCHASE_AMT CUSTOMER_NAME                                           
+---------- ------------ --------------------------------------------------      
+CITY                                                                            
+--------------------------------------------------                              
+      3001         1200 Alice                                                   
+New York                                                                        
+                                                                                
+      3003          750 Charlie                                                 
+Paris                                                                           
+                                                                                
+      3004         1800 Diana                                                   
+Mumbai                                                                          
+                                                                                
+
+    ORD_ID PURCHASE_AMT CUSTOMER_NAME                                           
+---------- ------------ --------------------------------------------------      
+CITY                                                                            
+--------------------------------------------------                              
+      3006         2000 Frank                                                   
+Delhi                                                                           
+                                                                                
+      3007          650 Grace                                                   
+London                                                                          
+                                                                                
+      3008         1500 Harry                                                   
+Paris                                                                           
+                                                                                
+
+6 rows selected.
+
+SQL> SELECT s.name AS salesman_name,c.cname AS customer_name FROM Salesman s JOIN Customer c ON s.salesman_id = c.salesman_id;
+
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+James                                                                           
+Alice                                                                           
+                                                                                
+Robert                                                                          
+Bob                                                                             
+                                                                                
+David                                                                           
+Charlie                                                                         
+                                                                                
+
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+Robert                                                                          
+Diana                                                                           
+                                                                                
+William                                                                         
+Eva                                                                             
+                                                                                
+David                                                                           
+Frank                                                                           
+                                                                                
+
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+John                                                                            
+Grace                                                                           
+                                                                                
+Robert                                                                          
+Harry                                                                           
+                                                                                
+
+8 rows selected.
+
+SQL> SELECT c.cname AS customer_name,s.name AS salesman_name,s.commission FROM Customer c JOIN Salesman s ON c.salesman_id = s.salesman_id WHERE s.commission > 12;
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                      COMMISSION                   
+-------------------------------------------------- ----------                   
+Alice                                                                           
+James                                                      15                   
+                                                                                
+Bob                                                                             
+Robert                                                     13                   
+                                                                                
+Charlie                                                                         
+David                                                      14                   
+                                                                                
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                      COMMISSION                   
+-------------------------------------------------- ----------                   
+Diana                                                                           
+Robert                                                     13                   
+                                                                                
+Frank                                                                           
+David                                                      14                   
+                                                                                
+Harry                                                                           
+Robert                                                     13                   
+                                                                                
+
+6 rows selected.
+
+SQL> SELECT e.emp_id,e.emp_fname,e.emp_lname,e.salary,d.dept_no,d.deptname FROM Emp_details e JOIN Emp_department d ON e.dept_no = d.dept_no;
+
+    EMP_ID EMP_FNAME                                                            
+---------- --------------------------------------------------                   
+EMP_LNAME                                              SALARY    DEPT_NO        
+-------------------------------------------------- ---------- ----------        
+DEPTNAME                                                                        
+--------------------------------------------------                              
+       101 John                                                                 
+Smith                                                   45000         10        
+Sales                                                                           
+                                                                                
+       102 Alice                                                                
+Brown                                                   50000         10        
+Sales                                                                           
+
+    EMP_ID EMP_FNAME                                                            
+---------- --------------------------------------------------                   
+EMP_LNAME                                              SALARY    DEPT_NO        
+-------------------------------------------------- ---------- ----------        
+DEPTNAME                                                                        
+--------------------------------------------------                              
+                                                                                
+       103 Robert                                                               
+Wilson                                                  42000         10        
+Sales                                                                           
+                                                                                
+       104 David                                                                
+Taylor                                                  55000         20        
+
+    EMP_ID EMP_FNAME                                                            
+---------- --------------------------------------------------                   
+EMP_LNAME                                              SALARY    DEPT_NO        
+-------------------------------------------------- ---------- ----------        
+DEPTNAME                                                                        
+--------------------------------------------------                              
+Finance                                                                         
+                                                                                
+       105 Mary                                                                 
+Thomas                                                  48000         20        
+Finance                                                                         
+                                                                                
+       106 James                                                                
+
+    EMP_ID EMP_FNAME                                                            
+---------- --------------------------------------------------                   
+EMP_LNAME                                              SALARY    DEPT_NO        
+-------------------------------------------------- ---------- ----------        
+DEPTNAME                                                                        
+--------------------------------------------------                              
+Moore                                                   60000         30        
+IT                                                                              
+                                                                                
+       107 Linda                                                                
+Martin                                                  52000         30        
+IT                                                                              
+                                                                                
+
+    EMP_ID EMP_FNAME                                                            
+---------- --------------------------------------------------                   
+EMP_LNAME                                              SALARY    DEPT_NO        
+-------------------------------------------------- ---------- ----------        
+DEPTNAME                                                                        
+--------------------------------------------------                              
+       108 Kevin                                                                
+Lee                                                     40000         30        
+IT                                                                              
+                                                                                
+
+8 rows selected.
+
+SQL> SELECT d.deptname,
+  2         COUNT(e.emp_id) AS employee_count
+  3  FROM Emp_department d
+  4  JOIN Emp_details e
+  5  ON d.dept_no = e.dept_no
+  6  GROUP BY d.deptname
+  7  HAVING COUNT(e.emp_id) > 2;
+
+DEPTNAME                                           EMPLOYEE_COUNT               
+-------------------------------------------------- --------------               
+IT                                                              3               
+Sales                                                           3               
+
+SQL> commit;
+
+Commit complete.
+
+SQL> CREATE TABLE Orders (
+  2      Ord_no      NUMBER PRIMARY KEY,
+  3      purch_amt   NUMBER(10,2),
+  4      ord_date    DATE,
+  5      customer_id NUMBER,
+  6      salesman_id NUMBER
+  7  );
+
+Table created.
+
+SQL> INSERT INTO Orders VALUES(7001, 1500, DATE '2026-01-10', 3001, 5001);INSERT INTO Orders VALUES(7002, 2500, DATE '2026-01-12', 3002, 5002);INSERT INTO Orders VALUES(7003, 1200, DATE '2026-01-15', 3003, 5001);INSERT INTO Orders VALUES(7004, 3000, DATE '2026-02-05', 3004, 5003);INSERT INTO Orders VALUES(7005, 800, DATE '2026-02-10', 3005, 5002);INSERT INTO Orders VALUES(7006, 1800, DATE '2026-02-15', 3006, 5001);INSERT INTO Orders VALUES(7007, 2200, DATE '2026-03-01', 3007, 5003);INSERT INTO Orders VALUES(7008, 950, DATE '2026-03-05', 3008, 5002);COMMIT;
+INSERT INTO Orders VALUES(7001, 1500, DATE '2026-01-10', 3001, 5001);INSERT INTO Orders VALUES(7002, 2500, DATE '2026-01-12', 3002, 5002);INSERT INTO Orders VALUES(7003, 1200, DATE '2026-01-15', 3003, 5001);INSERT INTO Orders VALUES(7004, 3000, DATE '2026-02-05', 3004, 5003);INSERT INTO Orders VALUES(7005, 800, DATE '2026-02-10', 3005, 5002);INSERT INTO Orders VALUES(7006, 1800, DATE '2026-02-15', 3006, 5001);INSERT INTO Orders VALUES(7007, 2200, DATE '2026-03-01', 3007, 5003);INSERT INTO Orders VALUES(7008, 950, DATE '2026-03-05', 3008, 5002);COMMIT
+                                                                    *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> INSERT INTO Orders VALUES
+  2  (7001, 1500, DATE '2026-01-10', 3001, 5001);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Orders VALUES
+  2  (7002, 2500, DATE '2026-01-12', 3002, 5002);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Orders VALUES
+  2  (7003, 1200, DATE '2026-01-15', 3003, 5001);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Orders VALUES
+  2  (7004, 3000, DATE '2026-02-05', 3004, 5003);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Orders VALUES
+  2  (7005, 800, DATE '2026-02-10', 3005, 5002);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Orders VALUES
+  2  (7006, 1800, DATE '2026-02-15', 3006, 5001);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Orders VALUES
+  2  (7007, 2200, DATE '2026-03-01', 3007, 5003);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Orders VALUES
+  2  (7008, 950, DATE '2026-03-05', 3008, 5002);
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> SELECT ord_date,
+  2         salesman_id,
+  3         ord_no,
+  4         purch_amt
+  5  FROM Orders;
+
+ORD_DATE  SALESMAN_ID     ORD_NO  PURCH_AMT                                     
+--------- ----------- ---------- ----------                                     
+10-JAN-26        5001       7001       1500                                     
+12-JAN-26        5002       7002       2500                                     
+15-JAN-26        5001       7003       1200                                     
+05-FEB-26        5003       7004       3000                                     
+10-FEB-26        5002       7005        800                                     
+15-FEB-26        5001       7006       1800                                     
+01-MAR-26        5003       7007       2200                                     
+05-MAR-26        5002       7008        950                                     
+
+8 rows selected.
+
+SQL> 
+SQL> SELECT DISTINCT salesman_id
+  2  FROM Orders;
+
+SALESMAN_ID                                                                     
+-----------                                                                     
+       5003                                                                     
+       5001                                                                     
+       5002                                                                     
+
+SQL> 
+SQL> SELECT ord_no,
+  2         ord_date,
+  3         purch_amt
+  4  FROM Orders
+  5  WHERE salesman_id = 5001;
+
+    ORD_NO ORD_DATE   PURCH_AMT                                                 
+---------- --------- ----------                                                 
+      7001 10-JAN-26       1500                                                 
+      7003 15-JAN-26       1200                                                 
+      7006 15-FEB-26       1800                                                 
+
+SQL> 
+SQL> SELECT *
+  2  FROM Orders
+  3  ORDER BY ord_no ASC;
+
+    ORD_NO  PURCH_AMT ORD_DATE  CUSTOMER_ID SALESMAN_ID                         
+---------- ---------- --------- ----------- -----------                         
+      7001       1500 10-JAN-26        3001        5001                         
+      7002       2500 12-JAN-26        3002        5002                         
+      7003       1200 15-JAN-26        3003        5001                         
+      7004       3000 05-FEB-26        3004        5003                         
+      7005        800 10-FEB-26        3005        5002                         
+      7006       1800 15-FEB-26        3006        5001                         
+      7007       2200 01-MAR-26        3007        5003                         
+      7008        950 05-MAR-26        3008        5002                         
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
