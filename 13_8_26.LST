@@ -1,0 +1,955 @@
+
+SQL> DECLARE
+  2  n NUMBER := &n; -- number of terms to print
+  3  a NUMBER := 0;
+  4  b NUMBER := 1;
+  5  c NUMBER;
+  6  BEGIN
+  7  DBMS_OUTPUT.PUT_LINE(a);
+  8  DBMS_OUTPUT.PUT_LINE(b);
+  9  FOR i IN 3..n LOOP
+ 10  c := a + b;
+ 11  DBMS_OUTPUT.PUT_LINE(c);
+ 12  a := b;
+ 13  b := c;
+ 14  END LOOP;
+ 15  END;
+ 16  /
+Enter value for n: 7
+old   2: n NUMBER := &n; -- number of terms to print
+new   2: n NUMBER := 7; -- number of terms to print
+0                                                                               
+1                                                                               
+1                                                                               
+2                                                                               
+3                                                                               
+5                                                                               
+8                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  n NUMBER := &n;
+  3  fact NUMBER := 1;
+  4  BEGIN
+  5  FOR i IN 1..n LOOP
+  6  fact := fact * i;
+  7  END LOOP;
+  8  DBMS_OUTPUT.PUT_LINE('Factorial of ' || n || ' = ' || fact);
+  9  END;
+ 10  /
+Enter value for n: 6
+old   2: n NUMBER := &n;
+new   2: n NUMBER := 6;
+Factorial of 6 = 720                                                            
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  n NUMBER := &n;
+  3  BEGIN
+  4  IF n > 0 THEN
+  5  DBMS_OUTPUT.PUT_LINE(n || ' is Positive');
+  6  ELSIF n < 0 THEN
+  7  DBMS_OUTPUT.PUT_LINE(n || ' is Negative');
+  8  ELSE
+  9  DBMS_OUTPUT.PUT_LINE('Number is Zero');
+ 10  END IF;
+ 11  END;
+ 12  /
+Enter value for n: -1
+old   2: n NUMBER := &n;
+new   2: n NUMBER := -1;
+-1 is Negative                                                                  
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  ch CHAR(1) := '&ch';
+  3  BEGIN
+  4  IF ch BETWEEN '0' AND '9' THEN
+  5  DBMS_OUTPUT.PUT_LINE(ch || ' is a Digit');
+  6  ELSIF (ch BETWEEN 'a' AND 'z') OR (ch BETWEEN 'A' AND 'Z') THEN
+  7  DBMS_OUTPUT.PUT_LINE(ch || ' is a Letter');
+  8  ELSE
+  9  DBMS_OUTPUT.PUT_LINE(ch || ' is neither Letter nor Digit');
+ 10  END IF;
+ 11  END;
+ 12  /
+Enter value for ch: a
+old   2: ch CHAR(1) := '&ch';
+new   2: ch CHAR(1) := 'a';
+a is a Letter                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  isPrime BOOLEAN;
+  3  BEGIN
+  4  FOR n IN 2..50 LOOP
+  5  isPrime := TRUE;
+  6  FOR i IN 2..TRUNC(SQRT(n)) LOOP
+  7  IF MOD(n,i) = 0 THEN
+  8  isPrime := FALSE;
+  9  EXIT;
+ 10  END IF;
+ 11  END LOOP;
+ 12  IF isPrime THEN
+ 13  DBMS_OUTPUT.PUT_LINE(n);
+ 14  END IF;
+ 15  END LOOP;
+ 16  END;
+ 17  /
+2                                                                               
+3                                                                               
+5                                                                               
+7                                                                               
+11                                                                              
+13                                                                              
+17                                                                              
+19                                                                              
+23                                                                              
+29                                                                              
+31                                                                              
+37                                                                              
+41                                                                              
+43                                                                              
+47                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  v_emp employees%ROWTYPE;
+  3  BEGIN
+  4  SELECT * INTO v_emp FROM employees WHERE employee_id = 45;
+  5  DBMS_OUTPUT.PUT_LINE('ID : ' || v_emp.employee_id);
+  6  DBMS_OUTPUT.PUT_LINE('Name : ' || v_emp.first_name || ' ' || v_emp.last_name);
+  7  DBMS_OUTPUT.PUT_LINE('Salary : ' || v_emp.salary);
+  8  EXCEPTION
+  9  WHEN NO_DATA_FOUND THEN
+ 10  DBMS_OUTPUT.PUT_LINE('No employee found with ID 45');
+ 11  END;
+ 12  /
+v_emp employees%ROWTYPE;
+      *
+ERROR at line 2:
+ORA-06550: line 2, column 7: 
+PLS-00201: identifier 'EMPLOYEES' must be declared 
+ORA-06550: line 2, column 7: 
+PL/SQL: Item ignored 
+ORA-06550: line 4, column 26: 
+PL/SQL: ORA-00942: table or view does not exist 
+ORA-06550: line 4, column 1: 
+PL/SQL: SQL Statement ignored 
+ORA-06550: line 5, column 33: 
+PLS-00320: the declaration of the type of this expression is incomplete or 
+malformed 
+ORA-06550: line 5, column 1: 
+PL/SQL: Statement ignored 
+ORA-06550: line 6, column 35: 
+PLS-00320: the declaration of the type of this expression is incomplete or 
+malformed 
+ORA-06550: line 6, column 1: 
+PL/SQL: Statement ignored 
+ORA-06550: line 7, column 37: 
+PLS-00320: the declaration of the type of this expression is incomplete or 
+malformed 
+ORA-06550: line 7, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> 
+SQL> DECLARE
+  2  v_emp employee%ROWTYPE;
+  3  BEGIN
+  4  SELECT * INTO v_emp FROM employee WHERE employee_id = 45;
+  5  DBMS_OUTPUT.PUT_LINE('ID : ' || v_emp.employee_id);
+  6  DBMS_OUTPUT.PUT_LINE('Name : ' || v_emp.first_name || ' ' || v_emp.last_name);
+  7  DBMS_OUTPUT.PUT_LINE('Salary : ' || v_emp.salary);
+  8  EXCEPTION
+  9  WHEN NO_DATA_FOUND THEN
+ 10  DBMS_OUTPUT.PUT_LINE('No employee found with ID 45');
+ 11  END;
+ 12  /
+SELECT * INTO v_emp FROM employee WHERE employee_id = 45;
+                                        *
+ERROR at line 4:
+ORA-06550: line 4, column 41: 
+PL/SQL: ORA-00904: "EMPLOYEE_ID": invalid identifier 
+ORA-06550: line 4, column 1: 
+PL/SQL: SQL Statement ignored 
+ORA-06550: line 5, column 39: 
+PLS-00302: component 'EMPLOYEE_ID' must be declared 
+ORA-06550: line 5, column 1: 
+PL/SQL: Statement ignored 
+ORA-06550: line 6, column 41: 
+PLS-00302: component 'FIRST_NAME' must be declared 
+ORA-06550: line 6, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> 
+SQL> DECLARE
+  2  v_emp employee%ROWTYPE;
+  3  BEGIN
+  4  SELECT * INTO v_emp FROM employee WHERE id = 45;
+  5  DBMS_OUTPUT.PUT_LINE('ID : ' || v_emp.id);
+  6  DBMS_OUTPUT.PUT_LINE('Name : ' || v_emp.first_name || ' ' || v_emp.last_name);
+  7  DBMS_OUTPUT.PUT_LINE('Salary : ' || v_emp.salary);
+  8  EXCEPTION
+  9  WHEN NO_DATA_FOUND THEN
+ 10  DBMS_OUTPUT.PUT_LINE('No employee found with ID 45');
+ 11  END;
+ 12  /
+DBMS_OUTPUT.PUT_LINE('Name : ' || v_emp.first_name || ' ' || v_emp.last_name);
+                                        *
+ERROR at line 6:
+ORA-06550: line 6, column 41: 
+PLS-00302: component 'FIRST_NAME' must be declared 
+ORA-06550: line 6, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> 
+SQL> DECLARE
+  2  v_emp employee%ROWTYPE;
+  3  BEGIN
+  4  SELECT * INTO v_emp FROM employee WHERE id = 45;
+  5  DBMS_OUTPUT.PUT_LINE('ID : ' || v_emp.id);
+  6  DBMS_OUTPUT.PUT_LINE('Name : ' || v_emp.emp_name || ' ' || v_emp.emp_name);
+  7  DBMS_OUTPUT.PUT_LINE('Salary : ' || v_emp.salary);
+  8  EXCEPTION
+  9  WHEN NO_DATA_FOUND THEN
+ 10  DBMS_OUTPUT.PUT_LINE('No employee found with ID 45');
+ 11  END;
+ 12  /
+No employee found with ID 45                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> CREATE TABLE employees (
+  2      employee_id NUMBER PRIMARY KEY,
+  3      first_name  VARCHAR2(50),
+  4      last_name   VARCHAR2(50),
+  5      salary      NUMBER(10,2)
+  6  );
+
+Table created.
+
+SQL> 
+SQL> INSERT INTO employees (employee_id, first_name, last_name, salary)
+  2  VALUES (101, 'John', 'Smith', 50000);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employees (employee_id, first_name, last_name, salary)
+  2  VALUES (102, 'Rahul', 'Patel', 45000);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employees (employee_id, first_name, last_name, salary)
+  2  VALUES (103, 'Priya', 'Shah', 55000);
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> DECLARE
+  2  v_count NUMBER;
+  3  BEGIN
+  4  SELECT COUNT(*) INTO v_count FROM employees WHERE employee_id = &empid;
+  5  IF v_count = 0 THEN
+  6  INSERT INTO employees(employee_id, first_name, last_name, salary)
+  7  VALUES (&empid, '&fname', '&lname', &sal);
+  8  DBMS_OUTPUT.PUT_LINE('Employee Inserted');
+  9  ELSE
+ 10  DBMS_OUTPUT.PUT_LINE('Employee already exists');
+ 11  END IF;
+ 12  END;
+ 13  /
+Enter value for empid: 102
+old   4: SELECT COUNT(*) INTO v_count FROM employees WHERE employee_id = &empid;
+new   4: SELECT COUNT(*) INTO v_count FROM employees WHERE employee_id = 102;
+Enter value for empid: 103
+Enter value for fname: rohit
+Enter value for lname: solanki
+Enter value for sal: 10000
+old   7: VALUES (&empid, '&fname', '&lname', &sal);
+new   7: VALUES (103, 'rohit', 'solanki', 10000);
+Employee already exists                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  v_count NUMBER;
+  3  BEGIN
+  4  SELECT COUNT(*) INTO v_count FROM employees WHERE employee_id = &empid;
+  5  IF v_count = 0 THEN
+  6  INSERT INTO employees(employee_id, first_name, last_name, salary)
+  7  VALUES (&empid, '&fname', '&lname', &sal);
+  8  DBMS_OUTPUT.PUT_LINE('Employee Inserted');
+  9  ELSE
+ 10  DBMS_OUTPUT.PUT_LINE('Employee already exists');
+ 11  END IF;
+ 12  END;
+ 13  /
+Enter value for empid: 104
+old   4: SELECT COUNT(*) INTO v_count FROM employees WHERE employee_id = &empid;
+new   4: SELECT COUNT(*) INTO v_count FROM employees WHERE employee_id = 104;
+Enter value for empid: 105
+Enter value for fname: rohit
+Enter value for lname: solanki
+Enter value for sal: 10000
+old   7: VALUES (&empid, '&fname', '&lname', &sal);
+new   7: VALUES (105, 'rohit', 'solanki', 10000);
+Employee Inserted                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from employees;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                              SALARY                   
+-------------------------------------------------- ----------                   
+        101 John                                                                
+Smith                                                   50000                   
+                                                                                
+        102 Rahul                                                               
+Patel                                                   45000                   
+                                                                                
+        103 Priya                                                               
+Shah                                                    55000                   
+                                                                                
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                              SALARY                   
+-------------------------------------------------- ----------                   
+        105 rohit                                                               
+solanki                                                 10000                   
+                                                                                
+
+SQL> 
+SQL> CREATE TABLE Student (
+  2  Id NUMBER PRIMARY KEY,
+  3  fname VARCHAR2(20),
+  4  lname VARCHAR2(20),
+  5  city VARCHAR2(20)
+  6  );
+CREATE TABLE Student (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> DECLARE
+  2  CURSOR c_student IS SELECT * FROM Student;
+  3  v_student c_student%ROWTYPE;
+  4  BEGIN
+  5  OPEN c_student;
+  6  LOOP
+  7  FETCH c_student INTO v_student;
+  8  EXIT WHEN c_student%NOTFOUND;
+  9  DBMS_OUTPUT.PUT_LINE(v_student.Id || ' ' || v_student.fname || ' ' ||
+ 10  v_student.lname || ' ' || v_student.city);
+ 11  END LOOP;
+ 12  CLOSE c_student;
+ 13  END;
+ 14  /
+DBMS_OUTPUT.PUT_LINE(v_student.Id || ' ' || v_student.fname || ' ' ||
+                               *
+ERROR at line 9:
+ORA-06550: line 9, column 32: 
+PLS-00302: component 'ID' must be declared 
+ORA-06550: line 9, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> CREATE TABLE Student1 (    id NUMBER PRIMARY KEY,    fname VARCHAR2(20),    lname VARCHAR2(20),    city VARCHAR2(20));
+
+Table created.
+
+SQL> INSERT INTO Student1 (id, fname, lname, city)VALUES (1, 'Rahul', 'Patel', 'Rajkot');INSERT INTO Student1 (id, fname, lname, city)VALUES (2, 'Amit', 'Shah', 'Ahmedabad');INSERT INTO Student1 (id, fname, lname, city)VALUES (3, 'Priya', 'Mehta', 'Surat');INSERT INTO Student1 (id, fname, lname, city)VALUES (4, 'Neha', 'Joshi', 'Vadodara');COMMIT;
+INSERT INTO Student1 (id, fname, lname, city)VALUES (1, 'Rahul', 'Patel', 'Rajkot');INSERT INTO Student1 (id, fname, lname, city)VALUES (2, 'Amit', 'Shah', 'Ahmedabad');INSERT INTO Student1 (id, fname, lname, city)VALUES (3, 'Priya', 'Mehta', 'Surat');INSERT INTO Student1 (id, fname, lname, city)VALUES (4, 'Neha', 'Joshi', 'Vadodara');COMMIT
+                                                                                   *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> 
+SQL> INSERT INTO Student1 (id, fname, lname, city)
+  2  VALUES (1, 'Rahul', 'Patel', 'Rajkot');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Student1 (id, fname, lname, city)
+  2  VALUES (2, 'Amit', 'Shah', 'Ahmedabad');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Student1 (id, fname, lname, city)
+  2  VALUES (3, 'Priya', 'Mehta', 'Surat');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Student1 (id, fname, lname, city)
+  2  VALUES (4, 'Neha', 'Joshi', 'Vadodara');
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> CREATE TABLE Student1 (
+  2  Id NUMBER PRIMARY KEY,
+  3  fname VARCHAR2(20),
+  4  lname VARCHAR2(20),
+  5  city VARCHAR2(20)
+  6  );
+CREATE TABLE Student1 (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> DECLARE
+  2  CURSOR c_student IS SELECT * FROM Student1;
+  3  v_student c_student%ROWTYPE;
+  4  BEGIN
+  5  OPEN c_student;
+  6  LOOP
+  7  FETCH c_student INTO v_student;
+  8  EXIT WHEN c_student%NOTFOUND;
+  9  DBMS_OUTPUT.PUT_LINE(v_student.Id || ' ' || v_student.fname || ' ' ||
+ 10  v_student.lname || ' ' || v_student.city);
+ 11  END LOOP;
+ 12  CLOSE c_student;
+ 13  END;
+ 14  /
+1 Rahul Patel Rajkot                                                            
+2 Amit Shah Ahmedabad                                                           
+3 Priya Mehta Surat                                                             
+4 Neha Joshi Vadodara                                                           
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  CURSOR c_emp IS SELECT employee_id, first_name FROM employees;
+  3  v_emp c_emp%ROWTYPE;
+  4  BEGIN
+  5  IF NOT c_emp%ISOPEN THEN
+  6  OPEN c_emp;
+  7  END IF;
+  8  LOOP
+  9  FETCH c_emp INTO v_emp;
+ 10  IF c_emp%NOTFOUND THEN
+ 11  EXIT;
+ 12  END IF;
+ 13  DBMS_OUTPUT.PUT_LINE(v_emp.employee_id || ' - ' || v_emp.first_name);
+ 14  END LOOP;
+ 15  CLOSE c_emp;
+ 16  END;
+ 17  /
+101 - John                                                                      
+102 - Rahul                                                                     
+103 - Priya                                                                     
+105 - rohit                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  CURSOR c_top5 IS
+  3  SELECT employee_id, first_name, salary FROM (
+  4  SELECT employee_id, first_name, salary
+  5  FROM employees
+  6  ORDER BY salary DESC
+  7  ) WHERE ROWNUM <= 5;
+  8  BEGIN
+  9  FOR emp_rec IN c_top5 LOOP
+ 10  DBMS_OUTPUT.PUT_LINE(emp_rec.employee_id || ' ' ||
+ 11  emp_rec.first_name || ' ' || emp_rec.salary);
+ 12  END LOOP;
+ 13  END;
+ 14  /
+103 Priya 55000                                                                 
+101 John 50000                                                                  
+102 Rahul 45000                                                                 
+105 rohit 10000                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  CURSOR c_emp IS SELECT first_name, salary FROM employees;
+  3  BEGIN
+  4  FOR rec IN c_emp LOOP
+  5  DBMS_OUTPUT.PUT_LINE(rec.first_name || ' - ' || rec.salary);
+  6  END LOOP;
+  7  END;
+  8  /
+John - 50000                                                                    
+Rahul - 45000                                                                   
+Priya - 55000                                                                   
+rohit - 10000                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  a NUMBER := &a;
+  3  b NUMBER := &b;
+  4  result NUMBER;
+  5  BEGIN
+  6  result := a / b;
+  7  DBMS_OUTPUT.PUT_LINE('Result = ' || result);
+  8  EXCEPTION
+  9  WHEN ZERO_DIVIDE THEN
+ 10  DBMS_OUTPUT.PUT_LINE('Error: Division by zero is not allowed');
+ 11  END;
+ 12  /
+Enter value for a: 1
+old   2: a NUMBER := &a;
+new   2: a NUMBER := 1;
+Enter value for b: 2
+old   3: b NUMBER := &b;
+new   3: b NUMBER := 2;
+Result = .5                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  a NUMBER := &a;
+  3  b NUMBER := &b;
+  4  result NUMBER;
+  5  BEGIN
+  6  result := a / b;
+  7  DBMS_OUTPUT.PUT_LINE('Result = ' || result);
+  8  EXCEPTION
+  9  WHEN ZERO_DIVIDE THEN
+ 10  DBMS_OUTPUT.PUT_LINE('Error: Division by zero is not allowed');
+ 11  END;
+ 12  /
+Enter value for a: 10
+old   2: a NUMBER := &a;
+new   2: a NUMBER := 10;
+Enter value for b: 5
+old   3: b NUMBER := &b;
+new   3: b NUMBER := 5;
+Result = 2                                                                      
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  CURSOR c_emp IS SELECT * FROM employees;
+  3  BEGIN
+  4  FOR rec IN c_emp LOOP
+  5  DBMS_OUTPUT.PUT_LINE(rec.employee_id || ' ' || rec.first_name || ' ' || rec.salary);
+  6  END LOOP;
+  7  END;
+  8  /
+101 John 50000                                                                  
+102 Rahul 45000                                                                 
+103 Priya 55000                                                                 
+105 rohit 10000                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE print_descending(n NUMBER) IS
+  2  BEGIN
+  3  IF n >= 1 THEN
+  4  DBMS_OUTPUT.PUT_LINE(n);
+  5  print_descending(n - 1);
+  6  END IF;
+  7  END;
+  8  /
+
+Procedure created.
+
+SQL> BEGIN
+  2  print_descending(10);
+  3  END;
+  4  /
+10                                                                              
+9                                                                               
+8                                                                               
+7                                                                               
+6                                                                               
+5                                                                               
+4                                                                               
+3                                                                               
+2                                                                               
+1                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE delete_by_dept(p_deptid NUMBER) IS
+  2  BEGIN
+  3  DELETE FROM employees WHERE department_id = p_deptid;
+  4  IF SQL%ROWCOUNT = 0 THEN
+  5  DBMS_OUTPUT.PUT_LINE('No records found for Department ' || p_deptid);
+  6  ELSE
+  7  DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT || ' record(s) deleted');
+  8  END IF;
+  9  COMMIT;
+ 10  END;
+ 11  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> BEGIN
+  2  delete_by_dept(&deptid);
+  3  END;
+  4  /
+Enter value for deptid: 105
+old   2: delete_by_dept(&deptid);
+new   2: delete_by_dept(105);
+delete_by_dept(105);
+*
+ERROR at line 2:
+ORA-06550: line 2, column 1: 
+PLS-00905: object SCOTT.DELETE_BY_DEPT is invalid 
+ORA-06550: line 2, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> select * from employees;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                              SALARY                   
+-------------------------------------------------- ----------                   
+        101 John                                                                
+Smith                                                   50000                   
+                                                                                
+        102 Rahul                                                               
+Patel                                                   45000                   
+                                                                                
+        103 Priya                                                               
+Shah                                                    55000                   
+                                                                                
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                              SALARY                   
+-------------------------------------------------- ----------                   
+        105 rohit                                                               
+solanki                                                 10000                   
+                                                                                
+
+SQL> CREATE TABLE employees1 (    employee_id NUMBER PRIMARY KEY,    first_name VARCHAR2(20),    last_name VARCHAR2(20),    salary NUMBER,    department_id NUMBER);
+
+Table created.
+
+SQL> 
+SQL> 
+SQL> INSERT INTO employees1 VALUES (1, 'Rahul', 'Patel', 40000, 101);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employees1 VALUES (2, 'Amit', 'Shah', 45000, 102);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employees1 VALUES (3, 'Priya', 'Mehta', 50000, 101);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employees1 VALUES (4, 'Neha', 'Joshi', 55000, 103);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employees1 VALUES (5, 'Raj', 'Shah', 60000, 102);
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE delete_by_dept(p_deptid NUMBER) IS
+  2  BEGIN
+  3  DELETE FROM employees1 WHERE department_id = p_deptid;
+  4  IF SQL%ROWCOUNT = 0 THEN
+  5  DBMS_OUTPUT.PUT_LINE('No records found for Department ' || p_deptid);
+  6  ELSE
+  7  DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT || ' record(s) deleted');
+  8  END IF;
+  9  COMMIT;
+ 10  END;
+ 11  /
+
+Procedure created.
+
+SQL> BEGIN
+  2  delete_by_dept(&deptid);
+  3  END;
+  4  /
+Enter value for deptid: 12
+old   2: delete_by_dept(&deptid);
+new   2: delete_by_dept(12);
+No records found for Department 12                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from employees1;
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                SALARY DEPARTMENT_ID  
+----------- -------------------- -------------------- ---------- -------------  
+          1 Rahul                Patel                     40000           101  
+          2 Amit                 Shah                      45000           102  
+          3 Priya                Mehta                     50000           101  
+          4 Neha                 Joshi                     55000           103  
+          5 Raj                  Shah                      60000           102  
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE delete_by_dept(p_deptid NUMBER) IS
+  2  BEGIN
+  3  DELETE FROM employees1 WHERE department_id = p_deptid;
+  4  IF SQL%ROWCOUNT = 0 THEN
+  5  DBMS_OUTPUT.PUT_LINE('No records found for Department ' || p_deptid);
+  6  ELSE
+  7  DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT || ' record(s) deleted');
+  8  END IF;
+  9  COMMIT;
+ 10  END;
+ 11  /
+
+Procedure created.
+
+SQL> BEGIN
+  2  delete_by_dept(&deptid);
+  3  END;
+  4  /
+Enter value for deptid: 102
+old   2: delete_by_dept(&deptid);
+new   2: delete_by_dept(102);
+2 record(s) deleted                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  v_count NUMBER;
+  3  v_empid NUMBER := &empid;
+  4  BEGIN
+  5  SELECT COUNT(*) INTO v_count FROM employees WHERE employee_id = v_empid;
+  6  IF v_count > 0 THEN
+  7  DBMS_OUTPUT.PUT_LINE('Employee Exists');
+  8  ELSE
+  9  DBMS_OUTPUT.PUT_LINE('Employee Does Not Exist');
+ 10  END IF;
+ 11  END;
+ 12  /
+Enter value for empid: 105
+old   3: v_empid NUMBER := &empid;
+new   3: v_empid NUMBER := 105;
+Employee Exists                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE show_student(p_sid NUMBER) IS
+  2  v_sname VARCHAR2(30);
+  3  v_dob DATE;
+  4  v_address VARCHAR2(50);
+  5  v_city VARCHAR2(20);
+  6  BEGIN
+  7  SELECT sname, DOB, address, city
+  8  INTO v_sname, v_dob, v_address, v_city
+  9  FROM student
+ 10  WHERE sid = p_sid;
+ 11  DBMS_OUTPUT.PUT_LINE('Sid : ' || p_sid);
+ 12  DBMS_OUTPUT.PUT_LINE('Sname : ' || v_sname);
+ 13  DBMS_OUTPUT.PUT_LINE('DOB : ' || v_dob);
+ 14  DBMS_OUTPUT.PUT_LINE('Address : ' || v_address);
+ 15  DBMS_OUTPUT.PUT_LINE('City : ' || v_city);
+ 16  EXCEPTION
+ 17  WHEN NO_DATA_FOUND THEN
+ 18  DBMS_OUTPUT.PUT_LINE('Student not found');
+ 19  END;
+ 20  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> BEGIN
+  2  show_student(&sid); -- call block
+  3  END;
+  4  /
+Enter value for sid: 1
+old   2: show_student(&sid); -- call block
+new   2: show_student(1); -- call block
+show_student(1); -- call block
+*
+ERROR at line 2:
+ORA-06550: line 2, column 1: 
+PLS-00905: object SCOTT.SHOW_STUDENT is invalid 
+ORA-06550: line 2, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> select * from student;
+
+no rows selected
+
+SQL> CREATE TABLE student5 (    sid NUMBER PRIMARY KEY,    sname VARCHAR2(30),    dob DATE,    address VARCHAR2(50),    city VARCHAR2(20));
+
+Table created.
+
+SQL> 
+SQL> INSERT INTO student5 VALUES
+  2  (1, 'Rahul', TO_DATE('15-05-2003', 'DD-MM-YYYY'), 'MG Road', 'Rajkot');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO student5 VALUES
+  2  (2, 'Amit', TO_DATE('20-08-2002', 'DD-MM-YYYY'), 'Station Road', 'Ahmedabad');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO student5 VALUES
+  2  (3, 'Priya', TO_DATE('10-12-2004', 'DD-MM-YYYY'), 'Ring Road', 'Surat');
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE show_student(p_sid NUMBER) IS
+  2  v_sname VARCHAR2(30);
+  3  v_dob DATE;
+  4  v_address VARCHAR2(50);
+  5  v_city VARCHAR2(20);
+  6  BEGIN
+  7  SELECT sname, DOB, address, city
+  8  INTO v_sname, v_dob, v_address, v_city
+  9  FROM student5
+ 10  WHERE sid = p_sid;
+ 11  DBMS_OUTPUT.PUT_LINE('Sid : ' || p_sid);
+ 12  DBMS_OUTPUT.PUT_LINE('Sname : ' || v_sname);
+ 13  DBMS_OUTPUT.PUT_LINE('DOB : ' || v_dob);
+ 14  DBMS_OUTPUT.PUT_LINE('Address : ' || v_address);
+ 15  DBMS_OUTPUT.PUT_LINE('City : ' || v_city);
+ 16  EXCEPTION
+ 17  WHEN NO_DATA_FOUND THEN
+ 18  DBMS_OUTPUT.PUT_LINE('Student not found');
+ 19  END;
+ 20  /
+
+Procedure created.
+
+SQL> BEGIN
+  2  show_student(&sid); -- call block
+  3  END;
+  4  /
+Enter value for sid: 1
+old   2: show_student(&sid); -- call block
+new   2: show_student(1); -- call block
+Sid : 1                                                                         
+Sname : Rahul                                                                   
+DOB : 15-MAY-03                                                                 
+Address : MG Road                                                               
+City : Rajkot                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from student5;
+
+       SID SNAME                          DOB                                   
+---------- ------------------------------ ---------                             
+ADDRESS                                            CITY                         
+-------------------------------------------------- --------------------         
+         1 Rahul                          15-MAY-03                             
+MG Road                                            Rajkot                       
+                                                                                
+         2 Amit                           20-AUG-02                             
+Station Road                                       Ahmedabad                    
+                                                                                
+         3 Priya                          10-DEC-04                             
+Ring Road                                          Surat                        
+                                                                                
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE change_name_caps(p_rollno NUMBER) IS
+  2  v_count NUMBER;
+  3  e_no_student EXCEPTION;
+  4  BEGIN
+  5  SELECT COUNT(*) INTO v_count FROM student5 WHERE rollno = p_rollno;
+  6  IF v_count = 0 THEN
+  7  RAISE e_no_student;
+  8  ELSE
+  9  UPDATE student5
+ 10  SET sname = UPPER(sname)
+ 11  WHERE rollno = p_rollno;
+ 12  DBMS_OUTPUT.PUT_LINE('Name updated to uppercase');
+ 13  COMMIT;
+ 14  END IF;
+ 15  EXCEPTION
+ 16  WHEN e_no_student THEN
+ 17  RAISE_APPLICATION_ERROR(-20001,
+ 18  'Student with Roll No ' || p_rollno || ' does not exist');
+ 19  END;
+ 20  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> BEGIN
+  2  change_name_caps(&rollno);
+  3  END;
+  4  /
+Enter value for rollno: 1
+old   2: change_name_caps(&rollno);
+new   2: change_name_caps(1);
+change_name_caps(1);
+*
+ERROR at line 2:
+ORA-06550: line 2, column 1: 
+PLS-00905: object SCOTT.CHANGE_NAME_CAPS is invalid 
+ORA-06550: line 2, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> CREATE TABLE student2 (    rollno NUMBER PRIMARY KEY,    sname VARCHAR2(30),    dob DATE,    address VARCHAR2(50),    city VARCHAR2(20));
+CREATE TABLE student2 (    rollno NUMBER PRIMARY KEY,    sname VARCHAR2(30),    dob DATE,    address VARCHAR2(50),    city VARCHAR2(20))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 

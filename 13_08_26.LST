@@ -1,0 +1,1102 @@
+CREATE TABLE Salesman1 (
+  2      Sid INT PRIMARY KEY,
+  3      name VARCHAR(50),
+  4      city VARCHAR(50),
+  5      commission DECIMAL(5,2)
+  6  );
+
+Table created.
+
+SQL> CREATE TABLE Customer1 (
+  2      C_id INT PRIMARY KEY,
+  3      cname VARCHAR(50),
+  4      city VARCHAR(50),
+  5      grade INT,
+  6      salesman_id INT,
+  7      FOREIGN KEY (salesman_id) REFERENCES Salesman1(Sid)
+  8  );
+
+Table created.
+
+SQL> 
+SQL> INSERT INTO Salesman1 (Sid, name, city, commission)
+  2  VALUES (5001, 'James', 'New York', 0.15);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman1 (Sid, name, city, commission)
+  2  VALUES (5002, 'Paul', 'London', 0.13);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman1 (Sid, name, city, commission)
+  2  VALUES (5003, 'John', 'Paris', 0.12);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman1 (Sid, name, city, commission)
+  2  VALUES (5004, 'Michael', 'New York', 0.14);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman1 (Sid, name, city, commission)
+  2  VALUES (5005, 'Robert', 'London', 0.11);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
+SQL> INSERT INTO Customer1 (C_id, cname, city, grade, salesman_id)
+  2  VALUES (3001, 'Albert', 'New York', 200, 5001);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer1 (C_id, cname, city, grade, salesman_id)
+  2  VALUES (3002, 'David', 'London', 100, 5002);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer1 (C_id, cname, city, grade, salesman_id)
+  2  VALUES (3003, 'Smith', 'Paris', 200, 5003);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer1 (C_id, cname, city, grade, salesman_id)
+  2  VALUES (3004, 'John', 'New York', 300, 5004);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer1 (C_id, cname, city, grade, salesman_id)
+  2  VALUES (3005, 'William', 'London', 150, 5005);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer1 (C_id, cname, city, grade, salesman_id)
+  2  VALUES (3006, 'Charles', 'New York', 80, 5001);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
+SQL> SELECT *
+  2  FROM Customer1
+  3  WHERE grade = 200;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3001 Albert                                                               
+New York                                                  200        5001       
+                                                                                
+      3003 Smith                                                                
+Paris                                                     200        5003       
+                                                                                
+
+SQL> 
+SQL> SELECT *
+  2  FROM Customer1
+  3  WHERE grade > 100;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3001 Albert                                                               
+New York                                                  200        5001       
+                                                                                
+      3003 Smith                                                                
+Paris                                                     200        5003       
+                                                                                
+      3004 John                                                                 
+New York                                                  300        5004       
+                                                                                
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3005 William                                                              
+London                                                    150        5005       
+                                                                                
+
+SQL> 
+SQL> SELECT *
+  2  FROM Customer1
+  3  WHERE city = 'New York'
+  4  AND grade > 100;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3001 Albert                                                               
+New York                                                  200        5001       
+                                                                                
+      3004 John                                                                 
+New York                                                  300        5004       
+                                                                                
+
+SQL> 
+SQL> SELECT *
+  2  FROM Customer1
+  3  WHERE city = 'New York'
+  4  OR grade > 100;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3001 Albert                                                               
+New York                                                  200        5001       
+                                                                                
+      3003 Smith                                                                
+Paris                                                     200        5003       
+                                                                                
+      3004 John                                                                 
+New York                                                  300        5004       
+                                                                                
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3005 William                                                              
+London                                                    150        5005       
+                                                                                
+      3006 Charles                                                              
+New York                                                   80        5001       
+                                                                                
+
+SQL> 
+SQL> SELECT cname, city, grade
+  2  FROM Customer1
+  3  ORDER BY grade DESC;
+
+CNAME                                                                           
+--------------------------------------------------                              
+CITY                                                    GRADE                   
+-------------------------------------------------- ----------                   
+John                                                                            
+New York                                                  300                   
+                                                                                
+Albert                                                                          
+New York                                                  200                   
+                                                                                
+Smith                                                                           
+Paris                                                     200                   
+                                                                                
+
+CNAME                                                                           
+--------------------------------------------------                              
+CITY                                                    GRADE                   
+-------------------------------------------------- ----------                   
+William                                                                         
+London                                                    150                   
+                                                                                
+David                                                                           
+London                                                    100                   
+                                                                                
+Charles                                                                         
+New York                                                   80                   
+                                                                                
+
+6 rows selected.
+
+SQL> 
+SQL> SELECT Customer1.cname, Salesman1.name
+  2  FROM Customer1
+  3  JOIN Salesman1
+  4  ON Customer1.city = Salesman1.city;
+
+CNAME                                                                           
+--------------------------------------------------                              
+NAME                                                                            
+--------------------------------------------------                              
+Albert                                                                          
+Michael                                                                         
+                                                                                
+Albert                                                                          
+James                                                                           
+                                                                                
+David                                                                           
+Robert                                                                          
+                                                                                
+
+CNAME                                                                           
+--------------------------------------------------                              
+NAME                                                                            
+--------------------------------------------------                              
+David                                                                           
+Paul                                                                            
+                                                                                
+Smith                                                                           
+John                                                                            
+                                                                                
+John                                                                            
+Michael                                                                         
+                                                                                
+
+CNAME                                                                           
+--------------------------------------------------                              
+NAME                                                                            
+--------------------------------------------------                              
+John                                                                            
+James                                                                           
+                                                                                
+William                                                                         
+Robert                                                                          
+                                                                                
+William                                                                         
+Paul                                                                            
+                                                                                
+
+CNAME                                                                           
+--------------------------------------------------                              
+NAME                                                                            
+--------------------------------------------------                              
+Charles                                                                         
+Michael                                                                         
+                                                                                
+Charles                                                                         
+James                                                                           
+                                                                                
+
+11 rows selected.
+
+SQL> CREATE TABLE Salesman2 (
+  2      Sid INT PRIMARY KEY,
+  3      name VARCHAR(50),
+  4      city VARCHAR(50),
+  5      commission DECIMAL(5,2)
+  6  );
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE Customer2 (
+  2      C_id INT PRIMARY KEY,
+  3      cname VARCHAR(50),
+  4      city VARCHAR(50),
+  5      grade INT,
+  6      salesman_id INT,
+  7      FOREIGN KEY (salesman_id) REFERENCES Salesman2(Sid)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO Salesman2 VALUES (5001, 'James', 'New York', 0.15);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman2 VALUES (5002, 'Paul', 'London', 0.13);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman2 VALUES (5003, 'John', 'Paris', 0.12);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman2 VALUES (5004, 'Michael', 'London', 0.14);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Salesman2 VALUES (5005, 'Robert', 'New York', 0.11);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer2 VALUES (3001, 'Albert', 'New York', 200, 5001);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer2 VALUES (3002, 'David', 'London', 100, 5002);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer2 VALUES (3003, 'Smith', 'Paris', 200, 5003);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer2 VALUES (3004, 'William', 'London', 300, 5004);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO Customer2 VALUES (3005, 'Charles', 'New York', 150, 5005);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
+SQL> SELECT Customer2.cname, Salesman2.name
+  2  FROM Customer2
+  3  JOIN Salesman2
+  4  ON Customer2.salesman_id = Salesman2.Sid;
+
+CNAME                                                                           
+--------------------------------------------------                              
+NAME                                                                            
+--------------------------------------------------                              
+Albert                                                                          
+James                                                                           
+                                                                                
+David                                                                           
+Paul                                                                            
+                                                                                
+Smith                                                                           
+John                                                                            
+                                                                                
+
+CNAME                                                                           
+--------------------------------------------------                              
+NAME                                                                            
+--------------------------------------------------                              
+William                                                                         
+Michael                                                                         
+                                                                                
+Charles                                                                         
+Robert                                                                          
+                                                                                
+
+SQL> 
+SQL> SELECT name AS person_name, city
+  2  FROM Salesman2
+  3  WHERE city = 'London'
+  4  
+SQL> UNION
+SP2-0042: unknown command "UNION" - rest of line ignored.
+SQL> 
+SQL> SELECT cname AS person_name, city
+  2  FROM Customer2
+  3  WHERE city = 'London';
+
+PERSON_NAME                                                                     
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+David                                                                           
+London                                                                          
+                                                                                
+William                                                                         
+London                                                                          
+                                                                                
+
+SQL> SELECT name AS person_name, city
+  2  FROM Salesman2
+  3  WHERE city = 'London' UNION
+  4  SELECT cname AS person_name, city
+  5  FROM Customer2
+  6  WHERE city = 'London';
+
+PERSON_NAME                                                                     
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+David                                                                           
+London                                                                          
+                                                                                
+Michael                                                                         
+London                                                                          
+                                                                                
+Paul                                                                            
+London                                                                          
+                                                                                
+
+PERSON_NAME                                                                     
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+William                                                                         
+London                                                                          
+                                                                                
+
+SQL> 
+SQL> SELECT name, city
+  2  FROM Salesman2;
+
+NAME                                                                            
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+James                                                                           
+New York                                                                        
+                                                                                
+Paul                                                                            
+London                                                                          
+                                                                                
+John                                                                            
+Paris                                                                           
+                                                                                
+
+NAME                                                                            
+--------------------------------------------------                              
+CITY                                                                            
+--------------------------------------------------                              
+Michael                                                                         
+London                                                                          
+                                                                                
+Robert                                                                          
+New York                                                                        
+                                                                                
+
+SQL> CREATE TABLE emp_details (
+  2      Emp_no INT PRIMARY KEY,
+  3      fname VARCHAR(50),
+  4      lname VARCHAR(50),
+  5      emp_dept INT
+  6  );
+CREATE TABLE emp_details (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> CREATE TABLE empdetails (
+  2      Emp_no INT PRIMARY KEY,
+  3      fname VARCHAR(50),
+  4      lname VARCHAR(50),
+  5      emp_dept INT
+  6  );
+
+Table created.
+
+SQL> 
+SQL> INSERT INTO empdetails VALUES (101, 'Rahul', 'Doshi', 57);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO empdetails VALUES (102, 'Amit', 'Joshi', 58);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO empdetails VALUES (103, 'Neha', 'Patel', 57);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO empdetails VALUES (104, 'Ravi', 'Doshi', 59);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO empdetails VALUES (105, 'Priya', 'Shah', 57);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO empdetails VALUES (106, 'Karan', 'Joshi', 60);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO empdetails VALUES (107, 'Nisha', 'Patel', 58);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
+SQL> SELECT DISTINCT lname
+  2  FROM empdetails;
+
+LNAME                                                                           
+--------------------------------------------------                              
+Joshi                                                                           
+Patel                                                                           
+Shah                                                                            
+Doshi                                                                           
+
+SQL> 
+SQL> SELECT *
+  2  FROM empdetails
+  3  WHERE emp_dept = 57;
+
+    EMP_NO FNAME                                                                
+---------- --------------------------------------------------                   
+LNAME                                                EMP_DEPT                   
+-------------------------------------------------- ----------                   
+       101 Rahul                                                                
+Doshi                                                      57                   
+                                                                                
+       103 Neha                                                                 
+Patel                                                      57                   
+                                                                                
+       105 Priya                                                                
+Shah                                                       57                   
+                                                                                
+
+SQL> 
+SQL> SELECT *
+  2  FROM empdetails
+  3  WHERE lname = 'Doshi'
+  4  OR lname = 'Joshi';
+
+    EMP_NO FNAME                                                                
+---------- --------------------------------------------------                   
+LNAME                                                EMP_DEPT                   
+-------------------------------------------------- ----------                   
+       101 Rahul                                                                
+Doshi                                                      57                   
+                                                                                
+       102 Amit                                                                 
+Joshi                                                      58                   
+                                                                                
+       104 Ravi                                                                 
+Doshi                                                      59                   
+                                                                                
+
+    EMP_NO FNAME                                                                
+---------- --------------------------------------------------                   
+LNAME                                                EMP_DEPT                   
+-------------------------------------------------- ----------                   
+       106 Karan                                                                
+Joshi                                                      60                   
+                                                                                
+
+SQL> 
+SQL> CREATE TABLE companymaster (
+  2      Com_id INT PRIMARY KEY,
+  3      com_name VARCHAR(50)
+  4  );
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE itemmaster (
+  2      Item_id INT PRIMARY KEY,
+  3      Item_name VARCHAR(50),
+  4      price DECIMAL(10,2),
+  5      company_code INT,
+  6      FOREIGN KEY (company_code) REFERENCES companymaster(Com_id)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO companymaster VALUES (101, 'Samsung');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO companymaster VALUES (102, 'Apple');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO companymaster VALUES (103, 'Sony');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO companymaster VALUES (104, 'Dell');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO companymaster VALUES (105, 'HP');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (1, 'Mobile', 500, 101);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (2, 'Tablet', 400, 101);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (3, 'iPhone', 800, 102);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (4, 'iPad', 600, 102);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (5, 'Headphone', 300, 103);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (6, 'Laptop', 700, 104);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (7, 'Monitor', 350, 104);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO itemmaster VALUES (8, 'Printer', 250, 105);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
+SQL> SELECT itemmaster.*, companymaster.com_name
+  2  FROM itemmaster
+  3  JOIN companymaster
+  4  ON itemmaster.company_code = companymaster.Com_id;
+
+   ITEM_ID ITEM_NAME                                               PRICE        
+---------- -------------------------------------------------- ----------        
+COMPANY_CODE COM_NAME                                                           
+------------ --------------------------------------------------                 
+         1 Mobile                                                    500        
+         101 Samsung                                                            
+                                                                                
+         2 Tablet                                                    400        
+         101 Samsung                                                            
+                                                                                
+         3 iPhone                                                    800        
+         102 Apple                                                              
+                                                                                
+
+   ITEM_ID ITEM_NAME                                               PRICE        
+---------- -------------------------------------------------- ----------        
+COMPANY_CODE COM_NAME                                                           
+------------ --------------------------------------------------                 
+         4 iPad                                                      600        
+         102 Apple                                                              
+                                                                                
+         5 Headphone                                                 300        
+         103 Sony                                                               
+                                                                                
+         6 Laptop                                                    700        
+         104 Dell                                                               
+                                                                                
+
+   ITEM_ID ITEM_NAME                                               PRICE        
+---------- -------------------------------------------------- ----------        
+COMPANY_CODE COM_NAME                                                           
+------------ --------------------------------------------------                 
+         7 Monitor                                                   350        
+         104 Dell                                                               
+                                                                                
+         8 Printer                                                   250        
+         105 HP                                                                 
+                                                                                
+
+8 rows selected.
+
+SQL> 
+SQL> SELECT itemmaster.Item_name, itemmaster.price, companymaster.com_name
+  2  FROM itemmaster
+  3  JOIN companymaster
+  4  ON itemmaster.company_code = companymaster.Com_id;
+
+ITEM_NAME                                               PRICE                   
+-------------------------------------------------- ----------                   
+COM_NAME                                                                        
+--------------------------------------------------                              
+Mobile                                                    500                   
+Samsung                                                                         
+                                                                                
+Tablet                                                    400                   
+Samsung                                                                         
+                                                                                
+iPhone                                                    800                   
+Apple                                                                           
+                                                                                
+
+ITEM_NAME                                               PRICE                   
+-------------------------------------------------- ----------                   
+COM_NAME                                                                        
+--------------------------------------------------                              
+iPad                                                      600                   
+Apple                                                                           
+                                                                                
+Headphone                                                 300                   
+Sony                                                                            
+                                                                                
+Laptop                                                    700                   
+Dell                                                                            
+                                                                                
+
+ITEM_NAME                                               PRICE                   
+-------------------------------------------------- ----------                   
+COM_NAME                                                                        
+--------------------------------------------------                              
+Monitor                                                   350                   
+Dell                                                                            
+                                                                                
+Printer                                                   250                   
+HP                                                                              
+                                                                                
+
+8 rows selected.
+
+SQL> 
+SQL> SELECT companymaster.com_name, AVG(itemmaster.price) AS average_price
+  2  FROM companymaster
+  3  JOIN itemmaster
+  4  ON companymaster.Com_id = itemmaster.company_code
+  5  GROUP BY companymaster.com_name;
+
+COM_NAME                                           AVERAGE_PRICE                
+-------------------------------------------------- -------------                
+Sony                                                         300                
+Samsung                                                      450                
+Apple                                                        700                
+Dell                                                         525                
+HP                                                           250                
+
+SQL> 
+SQL> SELECT companymaster.com_name, AVG(itemmaster.price) AS average_price
+  2  FROM companymaster
+  3  JOIN itemmaster
+  4  ON companymaster.Com_id = itemmaster.company_code
+  5  GROUP BY companymaster.com_name
+  6  HAVING AVG(itemmaster.price) >= 350;
+
+COM_NAME                                           AVERAGE_PRICE                
+-------------------------------------------------- -------------                
+Samsung                                                      450                
+Apple                                                        700                
+Dell                                                         525                
+
+SQL> commit;
+
+Commit complete.
+
+SQL> DECLARE
+  2  n NUMBER := &n;
+  3  BEGIN
+  4  IF MOD(n,2) = 0 THEN
+  5  DBMS_OUTPUT.PUT_LINE(n || ' is Even');
+  6  ELSE
+  7  DBMS_OUTPUT.PUT_LINE(n || ' is Odd');
+  8  END IF;
+  9  END;
+ 10  /
+Enter value for n: 3
+old   2: n NUMBER := &n;
+new   2: n NUMBER := 3;
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> 
+SQL> SET SERVEROUTPUT ON;
+SQL> 
+SQL> DECLARE
+  2      n NUMBER := &n;
+  3  BEGIN
+  4      IF MOD(n, 2) = 0 THEN
+  5          DBMS_OUTPUT.PUT_LINE(n || ' is Even');
+  6      ELSE
+  7          DBMS_OUTPUT.PUT_LINE(n || ' is Odd');
+  8      END IF;
+  9  END;
+ 10  /
+Enter value for n: 3
+old   2:     n NUMBER := &n;
+new   2:     n NUMBER := 3;
+3 is Odd                                                                        
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  yr NUMBER := &yr;
+  3  BEGIN
+  4  IF (MOD(yr,4) = 0 AND MOD(yr,100) != 0) OR MOD(yr,400) = 0 THEN
+  5  DBMS_OUTPUT.PUT_LINE(yr || ' is a Leap Year');
+  6  ELSE
+  7  DBMS_OUTPUT.PUT_LINE(yr || ' is not a Leap Year');
+  8  END IF;
+  9  END;
+ 10  /
+Enter value for yr: 2023
+old   2: yr NUMBER := &yr;
+new   2: yr NUMBER := 2023;
+2023 is not a Leap Year                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  n NUMBER := &n;
+  3  i NUMBER := 1;
+  4  BEGIN
+  5  WHILE i <= 10 LOOP
+  6  DBMS_OUTPUT.PUT_LINE(n || ' x ' || i || ' = ' || (n*i));
+  7  i := i + 1;
+  8  END LOOP;
+  9  END;
+ 10  /
+Enter value for n: 10
+old   2: n NUMBER := &n;
+new   2: n NUMBER := 10;
+10 x 1 = 10                                                                     
+10 x 2 = 20                                                                     
+10 x 3 = 30                                                                     
+10 x 4 = 40                                                                     
+10 x 5 = 50                                                                     
+10 x 6 = 60                                                                     
+10 x 7 = 70                                                                     
+10 x 8 = 80                                                                     
+10 x 9 = 90                                                                     
+10 x 10 = 100                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  i NUMBER := 1;
+  3  BEGIN
+  4  WHILE i <= 5 LOOP
+  5  DBMS_OUTPUT.PUT_LINE(i);
+  6  i := i + 1;
+  7  END LOOP;
+  8  END;
+  9  /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  i NUMBER := 1;
+  3  BEGIN
+  4  LOOP
+  5  DBMS_OUTPUT.PUT_LINE(i);
+  6  EXIT WHEN i = 10;
+  7  i := i + 1;
+  8  END LOOP;
+  9  END;
+ 10  /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> BEGIN
+  2  FOR i IN 1..10 LOOP
+  3  DBMS_OUTPUT.PUT_LINE(i);
+  4  END LOOP;
+  5  END;
+  6  /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  rollno NUMBER := &rollno;
+  3  sname VARCHAR2(30) := '&sname';
+  4  m1 NUMBER := &m1;
+  5  m2 NUMBER := &m2;
+  6  m3 NUMBER := &m3;
+  7  total NUMBER;
+  8  perc NUMBER;
+  9  class VARCHAR2(20);
+ 10  BEGIN
+ 11  total := m1 + m2 + m3;
+ 12  perc := total / 3;
+ 13  IF perc >= 75 THEN
+ 14  class := 'Distinction';
+ 15  ELSIF perc >= 60 THEN
+ 16  class := 'First Class';
+ 17  ELSIF perc >= 50 THEN
+ 18  class := 'Second Class';
+ 19  ELSIF perc >= 40 THEN
+ 20  class := 'Pass Class';
+ 21  ELSE
+ 22  class := 'Fail';
+ 23  END IF;
+ 24  DBMS_OUTPUT.PUT_LINE('Roll No : ' || rollno);
+ 25  DBMS_OUTPUT.PUT_LINE('Name : ' || sname);
+ 26  DBMS_OUTPUT.PUT_LINE('Total : ' || total);
+ 27  DBMS_OUTPUT.PUT_LINE('Percent : ' || perc);
+ 28  DBMS_OUTPUT.PUT_LINE('Class : ' || class);
+ 29  END;
+ 30  /
+Enter value for rollno: 
+old   2: rollno NUMBER := &rollno;
+new   2: rollno NUMBER := ;
+Enter value for sname: 1
+old   3: sname VARCHAR2(30) := '&sname';
+new   3: sname VARCHAR2(30) := '1';
+Enter value for m1: 12
+old   4: m1 NUMBER := &m1;
+new   4: m1 NUMBER := 12;
+Enter value for m2: 2
+old   5: m2 NUMBER := &m2;
+new   5: m2 NUMBER := 2;
+Enter value for m3: 2
+old   6: m3 NUMBER := &m3;
+new   6: m3 NUMBER := 2;
+rollno NUMBER := ;
+                 *
+ERROR at line 2:
+ORA-06550: line 2, column 18: 
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+( - + case mod new not null <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> avg 
+count current exists max min prior sql stddev sum variance 
+execute forall merge time timestamp interval date 
+<a string literal with character set specification> 
+<a number> <a single-quoted SQL string> pipe 
+<an alternatively-quoted string literal with character set specification> 
+<an alternatively-quoted S 
+
+
+SQL> 3
+  3* sname VARCHAR2(30) := '&sname';
+SQL> 
+SQL> DECLARE
+  2  rollno NUMBER := &rollno;
+  3  sname VARCHAR2(30) := '&sname';
+  4  m1 NUMBER := &m1;
+  5  m2 NUMBER := &m2;
+  6  m3 NUMBER := &m3;
+  7  total NUMBER;
+  8  perc NUMBER;
+  9  class VARCHAR2(20);
+ 10  BEGIN
+ 11  total := m1 + m2 + m3;
+ 12  perc := total / 3;
+ 13  IF perc >= 75 THEN
+ 14  class := 'Distinction';
+ 15  ELSIF perc >= 60 THEN
+ 16  class := 'First Class';
+ 17  ELSIF perc >= 50 THEN
+ 18  class := 'Second Class';
+ 19  ELSIF perc >= 40 THEN
+ 20  class := 'Pass Class';
+ 21  ELSE
+ 22  class := 'Fail';
+ 23  END IF;
+ 24  DBMS_OUTPUT.PUT_LINE('Roll No : ' || rollno);
+ 25  DBMS_OUTPUT.PUT_LINE('Name : ' || sname);
+ 26  DBMS_OUTPUT.PUT_LINE('Total : ' || total);
+ 27  DBMS_OUTPUT.PUT_LINE('Percent : ' || perc);
+ 28  DBMS_OUTPUT.PUT_LINE('Class : ' || class);
+ 29  END;
+ 30  /
+Enter value for rollno: 1
+old   2: rollno NUMBER := &rollno;
+new   2: rollno NUMBER := 1;
+Enter value for sname: rohit
+old   3: sname VARCHAR2(30) := '&sname';
+new   3: sname VARCHAR2(30) := 'rohit';
+Enter value for m1: 40
+old   4: m1 NUMBER := &m1;
+new   4: m1 NUMBER := 40;
+Enter value for m2: 30
+old   5: m2 NUMBER := &m2;
+new   5: m2 NUMBER := 30;
+Enter value for m3: 20
+old   6: m3 NUMBER := &m3;
+new   6: m3 NUMBER := 20;
+Roll No : 1                                                                     
+Name : rohit                                                                    
+Total : 90                                                                      
+Percent : 30                                                                    
+Class : Fail                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  n NUMBER := &n;
+  3  i NUMBER := 1;
+  4  BEGIN
+  5  WHILE i <= n LOOP
+  6  DBMS_OUTPUT.PUT_LINE(i*i);
+  7  i := i + 2;
+  8  END LOOP;
+  9  END;
+ 10  /
+Enter value for n: 5
+old   2: n NUMBER := &n;
+new   2: n NUMBER := 5;
+1                                                                               
+9                                                                               
+25                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2  n NUMBER := &n;
+  3  i NUMBER := 1;
+  4  s NUMBER := 0;
+  5  BEGIN
+  6  WHILE i <= n LOOP
+  7  s := s + i;
+  8  i := i + 3;
+  9  END LOOP;
+ 10  DBMS_OUTPUT.PUT_LINE('Sum = ' || s);
+ 11  END;
+ 12  /
+Enter value for n: 5
+old   2: n NUMBER := &n;
+new   2: n NUMBER := 5;
+Sum = 5                                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL> 
