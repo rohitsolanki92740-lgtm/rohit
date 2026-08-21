@@ -17,10 +17,6 @@ class DM
 		{
 			cout<<"\n meter="<<m;
 			cout<<"\n cm="<<c;
-				m=m*100;
-			c=c;
-			sum=m+c;
-
 		}
 
 };
@@ -51,6 +47,7 @@ void main()
 	b1.put();
 	getch();
 }
+
 
 
 

@@ -1,0 +1,102 @@
+#include<iostream.h>
+#include<conio.h>
+class DB;
+class DM
+{
+	float m,c;
+	public:
+		void get()
+		{
+			cout<<"enter value of meter:";
+			cin>>m;
+			cout<<"enter value of cm:";
+			cin>>c;
+		}
+		void put()
+		{
+			cout<<"\n meter="<<m;
+			cout<<"\n cm="<<c;
+		}
+		DM operator+(DB);
+};
+class DB
+{
+	float f,i;
+	public:
+		void get()
+		{
+			cout<<"\nenter value of feet:";
+			cin>>f;
+			cout<<"enter value of inch:";
+			cin>>i;
+		}
+		void put()
+		{
+			cout<<"\n feet="<<f;
+			cout<<"\n inch="<<i;
+		}
+		DB operator+(DM);
+		friend class DM;
+};
+DM DM::operator+(DB d)
+{
+    DM temp;
+
+    // Convert DB into centimeters
+    float db_cm = (d.f * 12 + d.i) * 2.54;
+
+    // Convert DM into centimeters
+    float dm_cm = m * 100 + c;
+
+    // Add both
+    float total_cm = dm_cm + db_cm;
+
+    // Convert back to meter and cm
+    temp.m = total_cm / 100;
+    temp.c = total_cm - ((int)temp.m * 100);
+
+    return temp;
+}
+
+/* DB + DM */
+DB DB::operator+(DM d)
+{
+    DB temp;
+    float dm_inch = (d.m * 100 + d.c) / 2.54;
+    float db_inch = f * 12 + i;
+    float total_inch = db_inch + dm_inch;
+    temp.f = total_inch / 12;
+    temp.i = total_inch - (temp.f * 12);
+	return temp;
+}
+void main()
+{
+	DM a1,resultDM;
+	DB b1,resultDB;
+	clrscr();
+	cout << "Enter DM value:";
+    a1.get();
+
+    cout << "\nEnter DB value:";
+    b1.get();
+
+    cout << "\n\nDM value:";
+    a1.put();
+
+    cout << "\n\nDB value:";
+    b1.put();
+
+    // DM + DB
+    resultDM = a1 + b1;
+
+    cout << "\n\nResult in DM:";
+    resultDM.put();
+
+    // DB + DM
+    resultDB = b1 + a1;
+
+    cout << "\n\nResult in DB:";
+    resultDB.put();
+
+    getch();
+}
